@@ -13,6 +13,7 @@
   "preset_process": "Process Engineer (Steel/Aluminum)",
   "preset_inst": "Instrumentation & Control",
   "preset_arch": "Architectural Specialist",
+  "preset_other": "➕ Other / Custom Role",
   "label_role": "Primary Discipline & Role Title",
   "label_seniority": "Seniority & Project Scope",
   "opt_senior": "Senior / Lead (Industrial EPC / Enterprise)",

@@ -156,12 +156,15 @@
       margin-bottom: 12px;
     }
 
+    /* Force Output Area to Always Stay Left-to-Right (LTR) */
     textarea.output-box {
       font-family: monospace;
       min-height: 240px;
       resize: vertical;
       background-color: #1e293b;
       color: #f8fafc;
+      direction: ltr !important;
+      text-align: left !important;
     }
 
     .actions {
@@ -218,6 +221,7 @@
         <button class="preset-btn" onclick="applyPreset('process_chem')" data-i18n="preset_process">Process Engineer (Steel/Aluminum)</button>
         <button class="preset-btn" onclick="applyPreset('instrumentation')" data-i18n="preset_inst">Instrumentation & Control</button>
         <button class="preset-btn" onclick="applyPreset('architectural')" data-i18n="preset_arch">Architectural Specialist</button>
+        <button class="preset-btn" onclick="applyPreset('custom')" data-i18n="preset_other">➕ Other / Custom Role</button>
       </div>
     </div>
 
@@ -292,7 +296,8 @@
         📌 <strong>Gemini Instructions:</strong> Go to Settings & Help (⚙️) → Personal Intelligence → Instructions for Gemini, then paste this block.
       </div>
 
-      <textarea id="outputBox" class="output-box" readonly></textarea>
+      <!-- Forced dir="ltr" on Output Box -->
+      <textarea id="outputBox" class="output-box" dir="ltr" readonly></textarea>
 
       <div class="actions">
         <button class="btn-primary" onclick="copyToClipboard()" data-i18n="btn_copy">📋 Copy to Clipboard</button>
@@ -385,6 +390,14 @@
         mode: "Direct Execution (No Fluff, Scannable Tables/Lists)",
         format: "BIM Execution Plans (BEP), wall section schedules, and code compliance summaries",
         constraints: "Specify occupancy classifications and fire-resistance ratings for all material specs."
+      },
+      custom: {
+        role: "",
+        seniority: "Senior / Lead Consultant (Industrial EPC / Enterprise)",
+        stack: "",
+        mode: "Direct Execution (No Fluff, Scannable Tables/Lists)",
+        format: "Scannable Markdown",
+        constraints: "No introductory fluff or greetings."
       }
     };
 
