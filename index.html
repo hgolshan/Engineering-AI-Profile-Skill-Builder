@@ -184,7 +184,7 @@
 
     .btn-primary:hover { background-color: var(--primary-hover); }
 
-    [dir="rtl"] { direction: rtl; font-family: 'Vazirmatn', sans-serif; }
+    html[dir="rtl"] { direction: rtl; font-family: 'Vazirmatn', sans-serif; }
   </style>
 </head>
 <body>
@@ -197,7 +197,7 @@
       </div>
       <div class="lang-select-wrapper">
         <label for="langSelect" data-i18n="label_language">Language:</label>
-        <select id="langSelect" style="width: auto;">
+        <select id="langSelect" style="width: auto;" onchange="changeLanguage(this.value)">
           <option value="en">English</option>
           <option value="fa">فارسی</option>
         </select>
@@ -208,16 +208,14 @@
     <div class="card">
       <div class="card-title" data-i18n="title_presets">⚡ Quick Discipline & Role Presets</div>
       <div class="presets-group">
-        <!-- IT & Software -->
         <button class="preset-btn" onclick="applyPreset('net_architect')" data-i18n="preset_net_arch">Network & IT Architect</button>
         <button class="preset-btn" onclick="applyPreset('it_auditor')" data-i18n="preset_it_auditor">IT Auditor & Compliance</button>
         <button class="preset-btn" onclick="applyPreset('web_dev')" data-i18n="preset_web_dev">Full-Stack Web Developer</button>
         <button class="preset-btn" onclick="applyPreset('devops')" data-i18n="preset_devops">DevOps & Cloud Engineer</button>
-        <!-- Engineering Disciplines -->
         <button class="preset-btn" onclick="applyPreset('electrical')" data-i18n="preset_electrical">Electrical Engineer</button>
         <button class="preset-btn" onclick="applyPreset('civil_struct')" data-i18n="preset_civil">Civil & Structural Engineer</button>
         <button class="preset-btn" onclick="applyPreset('piping_mech')" data-i18n="preset_piping">Piping & Mechanical Engineer</button>
-        <button class="preset-btn" onclick="applyPreset('process_chem')" data-i18n="preset_process">Process Engineer</button>
+        <button class="preset-btn" onclick="applyPreset('process_chem')" data-i18n="preset_process">Process Engineer (Steel/Aluminum)</button>
         <button class="preset-btn" onclick="applyPreset('instrumentation')" data-i18n="preset_inst">Instrumentation & Control</button>
         <button class="preset-btn" onclick="applyPreset('architectural')" data-i18n="preset_arch">Architectural Specialist</button>
       </div>
@@ -228,12 +226,12 @@
       <div class="form-grid">
         <div class="form-group">
           <label for="roleTitle" data-i18n="label_role">Primary Discipline & Role Title</label>
-          <input type="text" id="roleTitle" placeholder="e.g., Senior Process Engineer / Structural Specialist">
+          <input type="text" id="roleTitle" placeholder="e.g., Senior Metallurgical & Process Engineer / Structural Specialist">
         </div>
         <div class="form-group">
           <label for="seniority" data-i18n="label_seniority">Seniority & Project Scope</label>
           <select id="seniority">
-            <option value="Senior / Lead Consultant (Industrial / Enterprise)" data-i18n="opt_senior">Senior / Lead (Industrial / Enterprise)</option>
+            <option value="Senior / Lead Consultant (Industrial EPC / Enterprise)" data-i18n="opt_senior">Senior / Lead (Industrial EPC / Enterprise)</option>
             <option value="Mid-Level Project Engineer" data-i18n="opt_mid">Mid-Level Project Engineer</option>
             <option value="Junior / Field Specialist" data-i18n="opt_junior">Junior / Field Specialist</option>
           </select>
@@ -242,13 +240,13 @@
 
       <div class="form-group">
         <label for="techStack" data-i18n="label_stack">Primary Stack, Standards & Software Tools</label>
-        <input type="text" id="techStack" placeholder="e.g., AutoCAD, Revit, ETABS, SmartPlant 3D, ASPEN HYSYS, IEEE, ASME">
+        <input type="text" id="techStack" placeholder="e.g., METSIM, ASPEN Plus, AutoCAD, Revit, ETABS, SmartPlant 3D, ASME, ISO, API">
         <div class="chips-group">
+          <button class="chip-btn" onclick="appendChip('techStack', 'METSIM & Mass/Energy Balance')">+ METSIM</button>
           <button class="chip-btn" onclick="appendChip('techStack', 'ASME / API Standards')">+ ASME/API</button>
           <button class="chip-btn" onclick="appendChip('techStack', 'IEEE / IEC Standards')">+ IEEE/IEC</button>
           <button class="chip-btn" onclick="appendChip('techStack', 'AutoCAD & Revit')">+ CAD/Revit</button>
           <button class="chip-btn" onclick="appendChip('techStack', 'ETABS & SAP2000')">+ ETABS</button>
-          <button class="chip-btn" onclick="appendChip('techStack', 'ASPEN HYSYS')">+ HYSYS</button>
           <button class="chip-btn" onclick="appendChip('techStack', 'MikroTik RouterOS 7.x')">+ RouterOS 7</button>
           <button class="chip-btn" onclick="appendChip('techStack', 'Docker & Compose')">+ Docker</button>
         </div>
@@ -304,12 +302,13 @@
 
   <script>
     let currentPlatform = 'gemini';
+    let currentLang = 'en';
+    let translations = {};
 
     const presets = {
-      // IT & Systems
       net_architect: {
         role: "Senior Network & Security Architect",
-        seniority: "Senior / Lead Consultant (Industrial / Enterprise)",
+        seniority: "Senior / Lead Consultant (Industrial EPC / Enterprise)",
         stack: "MikroTik RouterOS 7.x, Sophos XGS, Cisco Catalyst, WireGuard, IPsec, OSPF",
         mode: "Direct Execution (No Fluff, Scannable Tables/Lists)",
         format: "Scannable Markdown with complete CLI commands and network topology tables",
@@ -317,7 +316,7 @@
       },
       it_auditor: {
         role: "Lead IT Auditor & Compliance Specialist",
-        seniority: "Senior / Lead Consultant (Industrial / Enterprise)",
+        seniority: "Senior / Lead Consultant (Industrial EPC / Enterprise)",
         stack: "ISO 27001, NIST CSF, Active Directory, Veeam v13, Linux System Logs",
         mode: "Socratic Review & Security/Safety Audit",
         format: "Structured Audit Matrix (Risk, Severity, Evidence Required, Remediation)",
@@ -333,16 +332,15 @@
       },
       devops: {
         role: "DevOps & Cloud Systems Engineer",
-        seniority: "Senior / Lead Consultant (Industrial / Enterprise)",
+        seniority: "Senior / Lead Consultant (Industrial EPC / Enterprise)",
         stack: "Docker, Docker Compose, Debian/Ubuntu Linux, Bash, Git, Nginx Reverse Proxy",
         mode: "Direct Execution (No Fluff, Scannable Tables/Lists)",
         format: "Production-ready YAML and Bash scripts",
         constraints: "Ensure root/non-root permissions and security best practices are strictly detailed."
       },
-      // Engineering Disciplines
       electrical: {
         role: "Senior Electrical Design Engineer",
-        seniority: "Senior / Lead Consultant (Industrial / Enterprise)",
+        seniority: "Senior / Lead Consultant (Industrial EPC / Enterprise)",
         stack: "ETAP, AutoCAD Electrical, IEEE 1584, IEC 60364, SLD, Switchgear, Arc Flash",
         mode: "Chain-of-Thought (Step-by-Step Logic First)",
         format: "Step-by-step engineering calculation sheets and Single-Line Diagram specs",
@@ -350,7 +348,7 @@
       },
       civil_struct: {
         role: "Structural Engineering Specialist",
-        seniority: "Senior / Lead Consultant (Industrial / Enterprise)",
+        seniority: "Senior / Lead Consultant (Industrial EPC / Enterprise)",
         stack: "ETABS, SAP2000, ACI 318, AISC 360, Eurocode 2/3, Revit Structure",
         mode: "Chain-of-Thought (Step-by-Step Logic First)",
         format: "Structural load combination tables and design verification reports",
@@ -358,23 +356,23 @@
       },
       piping_mech: {
         role: "Piping & Mechanical Systems Engineer",
-        seniority: "Senior / Lead Consultant (Industrial / Enterprise)",
+        seniority: "Senior / Lead Consultant (Industrial EPC / Enterprise)",
         stack: "SmartPlant 3D, CAESAR II, ASME B31.3, ASME B31.1, API 610, HVAC",
         mode: "Direct Execution (No Fluff, Scannable Tables/Lists)",
         format: "Piping material specifications (PMS) and stress analysis summary tables",
         constraints: "Reference exact ASME design pressure/temperature limits and schedule ratings."
       },
       process_chem: {
-        role: "Senior Process Engineer",
-        seniority: "Senior / Lead Consultant (Industrial / Enterprise)",
-        stack: "ASPEN HYSYS, PRO/II, P&ID, PFD, Heat & Material Balance (HMB), API 520/521",
+        role: "Senior Metallurgical & Industrial Process Engineer",
+        seniority: "Senior / Lead Consultant (Industrial EPC / Enterprise)",
+        stack: "METSIM, ASPEN Plus, PFD, P&ID, Mass & Energy Balance, BOF, EAF, Bayer Process, Hall-Héroult, ISO/API",
         mode: "Chain-of-Thought (Step-by-Step Logic First)",
-        format: "Heat & Material Balance sheets, Relief Valve sizing, and P&ID review checklists",
-        constraints: "Verify thermodynamic fluid packages before detailing process flow balances."
+        format: "Heat & Mass Balance Sheets, Equipment Datasheets, and PFD/P&ID Flow Schemes",
+        constraints: "Focus on heavy industrial metallurgy (steelmaking, aluminum refining/smelting, gas cleaning, material handling). Avoid pure organic/lab chemical reactions."
       },
       instrumentation: {
         role: "Instrumentation & Control Systems (I&C) Engineer",
-        seniority: "Senior / Lead Consultant (Industrial / Enterprise)",
+        seniority: "Senior / Lead Consultant (Industrial EPC / Enterprise)",
         stack: "DCS, PLC, SCADA, ISA-5.1, SIL Rating (IEC 61508/61511), Control Valves",
         mode: "Socratic Review & Security/Safety Audit",
         format: "Instrument Loop Diagrams, I/O lists, and Cause & Effect Matrices",
@@ -382,13 +380,34 @@
       },
       architectural: {
         role: "Lead Architectural Specialist & BIM Manager",
-        seniority: "Senior / Lead Consultant (Industrial / Enterprise)",
+        seniority: "Senior / Lead Consultant (Industrial EPC / Enterprise)",
         stack: "Autodesk Revit, Rhino 3D, IBC (International Building Code), ADA, BIM 360",
         mode: "Direct Execution (No Fluff, Scannable Tables/Lists)",
         format: "BIM Execution Plans (BEP), wall section schedules, and code compliance summaries",
         constraints: "Specify occupancy classifications and fire-resistance ratings for all material specs."
       }
     };
+
+    async function changeLanguage(lang) {
+      currentLang = lang;
+      document.documentElement.setAttribute('dir', lang === 'fa' ? 'rtl' : 'ltr');
+      document.documentElement.setAttribute('lang', lang);
+
+      try {
+        const response = await fetch(`./locales/${lang}.json`);
+        if (!response.ok) throw new Error(`Could not load ${lang}.json`);
+        translations = await response.json();
+        
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          const key = el.getAttribute('data-i18n');
+          if (translations[key]) {
+            el.textContent = translations[key];
+          }
+        });
+      } catch (err) {
+        console.error('Localization error:', err);
+      }
+    }
 
     function applyPreset(key) {
       const p = presets[key];
@@ -483,7 +502,10 @@
       alert("Copied to clipboard!");
     }
 
-    window.onload = () => generatePrompt();
+    window.onload = () => {
+      changeLanguage('en');
+      generatePrompt();
+    };
   </script>
 </body>
 </html>
