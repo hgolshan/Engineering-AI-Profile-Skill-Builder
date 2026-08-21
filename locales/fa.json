@@ -1,64 +1,30 @@
 {
-  "title": "🤖 سازنده پروفایل کانتکست هوش مصنوعی",
-  "subtitle": "ساخت دستورالعمل‌های سفارشی و دقیق برای مدل‌های ChatGPT، Claude و Gemini در کمتر از دو دقیقه.",
-  "form": {
-    "roleLabel": "نقش یا حوزه تخصصی اصلی شما:",
-    "rolePlaceholder": "مانند: مدیر ارشد سیستم‌ها، مهندس عمران، توسعه‌دهنده وب",
-    "toolsLabel": "ابزارها، فناوری‌ها یا استانداردهای اصلی که روزانه استفاده می‌کنید:",
-    "toolsPlaceholder": "مانند: Linux, Docker, WireGuard, استانداردهای IEEE, AutoCAD",
-    "toneLabel": "سبک پاسخ‌دهی مد نظر شما:",
-    "toneOptions": {
-      "direct": "مستقیم و فنی (بدون مقدمه و حاشیه، مستقیماً به اصل مطلب)",
-      "educational": "گام‌به‌گام و آموزشی (با توضیحات کامل و ساختاریافته)",
-      "conversational": "گفتگو محور و تعاملی"
-    },
-    "modeLabel": "حالت پاسخ‌دهی و پردازش:",
-    "modeOptions": {
-      "absolute": "حالت مطلق (پاسخ کاملاً مستقیم بدون مقدمه‌چینی، برنامه‌ریزی یا عبارت‌های عمومی)",
-      "cot": "زنجیره تفکر (ارائه استدلال و تحلیل گام‌به‌گام قبل از خروجی نهایی)",
-      "socratic": "حالت سقراطی (طرح سوالات راهنما برای رسیدن به پاسخ اصلی)",
-      "critic": "حالت بررسی انتقادی (تحلیل باگ‌ها، حالت‌های خاص و چالش‌های احتمالی در ابتدا)"
-    },
-    "constraintsLabel": "مواردی که هوش مصنوعی **باید کاملاً از آن‌ها اجتناب کند**:",
-    "constraintsPlaceholder": "مانند: عدم تکرار سوال من، حذف مقدمه‌ها و موخره‌های عمومی، ارائه کامل کدها و کانفیگ‌ها بدون خلاصه‌سازی.",
-    "generateBtn": "تولید پروفایل"
-  },
-  "output": {
-    "title": "پروفایل کانتکست سفارشی شما:",
-    "copyBtn": "کپی در حافظه",
-    "copiedText": "کپی شد! ✓"
-  },
-  "guide": {
-    "title": "📍 محل قرار دادن پروفایل تولید شده:",
-    "steps": {
-      "chatgpt": [
-        "روی عکس پروفایل خود در گوشه پایین سمت چپ کلیک کنید.",
-        "گزینه <strong>Customize ChatGPT</strong> (یا Custom Instructions) را انتخاب کنید.",
-        "متن تولید شده را در بخش <code>How would you like ChatGPT to respond؟</code> قرار دهید.",
-        "روی <strong>Save</strong> کلیک کنید."
-      ],
-      "claude": [
-        "روی نام/مخفف نام خود در گوشه پایین سمت چپ کلیک کنید.",
-        "گزینه <strong>Styles & Preferences</strong> را انتخاب کنید.",
-        "متن را در کادر <strong>Custom Instructions</strong> وارد کنید.",
-        "روی <strong>Save Preferences</strong> کلیک کنید."
-      ],
-      "gemini": [
-        "در Gemini روی آیکون تنظیمات (<strong>⚙️</strong>) در منوی سمت چپ کلیک کنید.",
-        "گزینه <strong>Saved Info / System Instructions</strong> را انتخاب کنید.",
-        "یا متن کپی شده را در اولین پیام چت جدید خود ارسال کنید."
-      ]
-    }
-  },
-  "template": {
-    "header": "### User Context & System Instructions",
-    "background": "**Background & Domain:**",
-    "role": "- Role:",
-    "tools": "- Tech Stack & Core Tools:",
-    "style": "**Response Style & Preferences:**",
-    "styleSub": "- Skip basic concepts or definitions unless explicitly requested. Assume domain-level familiarity.",
-    "mode": "**Answering & Reasoning Mode:**",
-    "constraints": "**Constraints & Rules:**",
-    "constraintsSub": "- Provide complete code, scripts, or configuration blocks without truncated placeholders."
-  }
+  "app_title": "🤖 سازنده پروفایل کانتکست هوش مصنوعی",
+  "app_subtitle": "ساخت پرامپت‌های سیستمی بهینه‌شده برای Gemini، Claude و ChatGPT در چند ثانیه.",
+  "label_language": "زبان:",
+  "title_presets": "⚡ قالب‌های آماده تخصص‌های مهندسی و IT",
+  "preset_net_arch": "آرکیتکت شبکه و IT",
+  "preset_it_auditor": "ممیز IT و انطباق استانداردها",
+  "preset_web_dev": "توسعه‌دهنده وب فول‌استک",
+  "preset_devops": "مهندس دواپس و ابر",
+  "preset_electrical": "مهندس برق و قدرت",
+  "preset_civil": "مهندس عمران و سازه",
+  "preset_piping": "مهندس پایپینگ و مکانیک",
+  "preset_process": "مهندس فرآیند (شیمی)",
+  "preset_inst": "مهندس ابزاردقیق و کنترل",
+  "preset_arch": "متخصص معماری و BIM",
+  "label_role": "عنوان تخصص و نقش اصلی",
+  "label_seniority": "سطح ارشدیت و حوزه پروژه",
+  "opt_senior": "ارشد / سرپرست (پروژه‌های صنعتی / سازمانی)",
+  "opt_mid": "مهندس پروژه سطح متوسط",
+  "opt_junior": "مبتدی / متخصص میدانی",
+  "label_stack": "ابزارها، نرم‌افزارها و استانداردهای اصلی",
+  "label_reasoning": "حالت استدلال و تعامل هوش مصنوعی",
+  "opt_direct": "پاسخ مستقیم و سریع (بدون حاشیه، بالتی)",
+  "opt_cot": "استدلال گام‌به‌گام (تحلیل منطق قبل از پاسخ)",
+  "opt_socratic": "روش سقراطی و ممیزی ایمنی/امنیتی",
+  "label_format": "فرمت و استایل خروجی",
+  "label_constraints": "محدودیت‌های سخت‌گیرانه (نبایدها)",
+  "btn_generate": "🚀 ساخت پروفایل کانتکست",
+  "btn_copy": "📋 کپی در حافظه"
 }

@@ -1,64 +1,30 @@
 {
-  "title": "🤖 AI Context Profile Generator",
-  "subtitle": "Generate custom context instructions tailored for your daily workflows in under two minutes.",
-  "form": {
-    "roleLabel": "Primary Role or Domain:",
-    "rolePlaceholder": "e.g., Senior Systems Administrator, Civil Engineer, Web Developer",
-    "toolsLabel": "Core Tools, Technologies, or Standards Used Daily:",
-    "toolsPlaceholder": "e.g., Linux, Docker, WireGuard, IEEE Standards, AutoCAD",
-    "toneLabel": "Preferred Communication Style:",
-    "toneOptions": {
-      "direct": "Direct & Technical (No fluff, straight to solution)",
-      "educational": "Step-by-Step & Educational (Clear explanations)",
-      "conversational": "Conversational & Collaborative"
-    },
-    "modeLabel": "Answering / Processing Mode:",
-    "modeOptions": {
-      "absolute": "Absolute Mode (Direct answer immediately, skip meta-talk or planning)",
-      "cot": "Chain-of-Thought (Show step-by-step reasoning before final output)",
-      "socratic": "Socratic Mode (Ask guiding questions to lead to the solution)",
-      "critic": "Critical Review Mode (Analyze potential edge cases and flaws first)"
-    },
-    "constraintsLabel": "Things the AI Must ALWAYS AVOID:",
-    "constraintsPlaceholder": "e.g., Do not repeat my prompt back to me, skip generic intros/outros, show complete code/configs without truncated blocks.",
-    "generateBtn": "Generate Profile"
-  },
-  "output": {
-    "title": "Your Custom Instruction Profile:",
-    "copyBtn": "Copy to Clipboard",
-    "copiedText": "Copied! ✓"
-  },
-  "guide": {
-    "title": "📍 Where to Paste Your Profile:",
-    "steps": {
-      "chatgpt": [
-        "Click your Profile Picture in the bottom-left corner.",
-        "Select <strong>Customize ChatGPT</strong> (or Custom Instructions).",
-        "Paste the generated text into the box labeled: <code>How would you like ChatGPT to respond?</code>",
-        "Click <strong>Save</strong>."
-      ],
-      "claude": [
-        "Click your Initials / Profile Name in the bottom-left corner.",
-        "Select <strong>Styles & Preferences</strong> (or open a Project for context scope).",
-        "Paste the generated profile into the <strong>Custom Instructions</strong> text area.",
-        "Click <strong>Save Preferences</strong>."
-      ],
-      "gemini": [
-        "Open Gemini and click <strong>Settings (⚙️)</strong> in the left sidebar.",
-        "Select <strong>Saved Info / System Instructions</strong> (if available in your tier).",
-        "Alternatively, paste this profile into the first prompt of a new thread."
-      ]
-    }
-  },
-  "template": {
-    "header": "### User Context & System Instructions",
-    "background": "**Background & Domain:**",
-    "role": "- Role:",
-    "tools": "- Tech Stack & Core Tools:",
-    "style": "**Response Style & Preferences:**",
-    "styleSub": "- Skip basic concepts or definitions unless explicitly requested. Assume domain-level familiarity.",
-    "mode": "**Answering & Reasoning Mode:**",
-    "constraints": "**Constraints & Rules:**",
-    "constraintsSub": "- Provide complete code, scripts, or configuration blocks without truncated placeholders."
-  }
+  "app_title": "🤖 AI Context Profile Generator",
+  "app_subtitle": "Create optimized system prompts for Gemini, Claude, and ChatGPT in seconds.",
+  "label_language": "Language:",
+  "title_presets": "⚡ Quick Discipline & Role Presets",
+  "preset_net_arch": "Network & IT Architect",
+  "preset_it_auditor": "IT Auditor & Compliance",
+  "preset_web_dev": "Full-Stack Web Developer",
+  "preset_devops": "DevOps & Cloud Engineer",
+  "preset_electrical": "Electrical Engineer",
+  "preset_civil": "Civil & Structural Engineer",
+  "preset_piping": "Piping & Mechanical Engineer",
+  "preset_process": "Process Engineer",
+  "preset_inst": "Instrumentation & Control",
+  "preset_arch": "Architectural Specialist",
+  "label_role": "Primary Discipline & Role Title",
+  "label_seniority": "Seniority & Project Scope",
+  "opt_senior": "Senior / Lead (Industrial / Enterprise)",
+  "opt_mid": "Mid-Level Project Engineer",
+  "opt_junior": "Junior / Field Specialist",
+  "label_stack": "Primary Stack, Standards & Software Tools",
+  "label_reasoning": "Reasoning & Interaction Mode",
+  "opt_direct": "Direct Execution (No Fluff, Bulleted)",
+  "opt_cot": "Chain-of-Thought (Logic First)",
+  "opt_socratic": "Socratic & Safety/Security Audit",
+  "label_format": "Primary Output Style",
+  "label_constraints": "Hard Negative Constraints (What to Avoid)",
+  "btn_generate": "🚀 Generate Context Profile",
+  "btn_copy": "📋 Copy to Clipboard"
 }
