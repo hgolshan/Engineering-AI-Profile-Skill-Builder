@@ -1,31 +1,384 @@
 {
-  "app_title": "🤖 AI Context Profile Generator",
-  "app_subtitle": "Create optimized system prompts for Gemini, Claude, and ChatGPT in seconds.",
-  "label_language": "Language:",
-  "title_presets": "⚡ Quick Discipline & Role Presets",
-  "preset_net_arch": "Network & IT Architect",
-  "preset_it_auditor": "IT Auditor & Compliance",
-  "preset_web_dev": "Full-Stack Web Developer",
-  "preset_devops": "DevOps & Cloud Engineer",
-  "preset_electrical": "Electrical Engineer",
-  "preset_civil": "Civil & Structural Engineer",
-  "preset_piping": "Piping & Mechanical Engineer",
-  "preset_process": "Process Engineer (Steel/Aluminum)",
-  "preset_inst": "Instrumentation & Control",
-  "preset_arch": "Architectural Specialist",
-  "preset_other": "➕ Other / Custom Role",
-  "label_role": "Primary Discipline & Role Title",
-  "label_seniority": "Seniority & Project Scope",
-  "opt_senior": "Senior / Lead (Industrial EPC / Enterprise)",
-  "opt_mid": "Mid-Level Project Engineer",
-  "opt_junior": "Junior / Field Specialist",
-  "label_stack": "Primary Stack, Standards & Software Tools",
-  "label_reasoning": "Reasoning & Interaction Mode",
-  "opt_direct": "Direct Execution (No Fluff, Bulleted)",
-  "opt_cot": "Chain-of-Thought (Logic First)",
-  "opt_socratic": "Socratic & Safety/Security Audit",
-  "label_format": "Primary Output Style",
-  "label_constraints": "Hard Negative Constraints (What to Avoid)",
-  "btn_generate": "🚀 Generate Context Profile",
-  "btn_copy": "📋 Copy to Clipboard"
+  "meta": {
+    "title": "Engineering AI Profile & Skill Builder",
+    "description": "Bilingual (EN/FA) open-source tool for industrial and EPC engineering teams to build verified, reusable AI profiles and domain skill instructions."
+  },
+  "nav": {
+    "brand": "Engineering AI Profile Builder",
+    "builder": "Profile Builder",
+    "skills": "Skill Modules",
+    "howItWorks": "How It Works",
+    "privacy": "Privacy & Disclaimer",
+    "github": "GitHub Repository",
+    "themeLight": "Switch to Light Theme",
+    "themeDark": "Switch to Dark Theme",
+    "langSelect": "Select Language"
+  },
+  "hero": {
+    "kicker": "Industrial & EPC AI Workflow Designer",
+    "title": "Build Verified AI Profiles for Professional Engineering Teams",
+    "subtitle": "Create structured, discipline-grounded instructions for ChatGPT, Claude, Microsoft Copilot, or local LLMs. Tailored for heavy industry, metal plants, utilities, and EPC/EPCM projects with zero hallucinated standards.",
+    "ctaStart": "Start Building Profile",
+    "ctaGuide": "View Workflow Guide"
+  },
+  "disclaimer": {
+    "title": "Professional Engineering Verification Notice",
+    "text": "This application generates deterministic text prompts and reusable instructions for AI assistants. It does NOT perform engineering calculations, finite element analysis, or code certification. All outputs produced by third-party AI systems must be independently checked, verified, and stamped by qualified professional engineers before being used in tender, design, procurement, or construction activities."
+  },
+  "privacyNotice": {
+    "title": "Client-Side Privacy Guarantee",
+    "text": "All profile generation, saving, and export happens 100% locally in your web browser. No project data, job descriptions, or custom instructions are ever sent to an external server or analytics service. Do NOT paste proprietary, classified, or confidential plant telemetry into unauthorized public AI chatbots."
+  },
+  "sections": {
+    "identity": {
+      "title": "1. Professional Identity",
+      "desc": "Define your role, discipline, and level of experience to calibrate AI tone and depth."
+    },
+    "environment": {
+      "title": "2. Engineering Environment & Context",
+      "desc": "Specify your industry, project phase, responsibilities, deliverables, and engineering software."
+    },
+    "generalSkills": {
+      "title": "3. General Professional Skills",
+      "desc": "Select communication, documentation, and coordination skill instructions to inject into your profile."
+    },
+    "disciplineSkills": {
+      "title": "4. Discipline-Specific Engineering Skills",
+      "desc": "Select technical engineering guidelines relevant to your specific domain."
+    },
+    "preferences": {
+      "title": "5. AI Response & Verification Preferences",
+      "desc": "Configure exact engineering rigor rules, unit conventions, and anti-hallucination guardrails."
+    },
+    "custom": {
+      "title": "6. Custom Instructions & Organizational Standards",
+      "desc": "Add company-specific guidelines, project naming rules, or personal directives."
+    },
+    "output": {
+      "title": "Generated Engineering AI Profile",
+      "desc": "Copy this structured prompt and paste it into your AI assistant system prompt, custom instructions, or project memory."
+    }
+  },
+  "fields": {
+    "profileName": "Profile Name (Optional)",
+    "profileNamePlaceholder": "e.g., Senior Mechanical Piping Lead - Smelter Project",
+    "jobTitle": "Job Title",
+    "jobTitlePlaceholder": "e.g., Senior Lead Piping Engineer",
+    "department": "Department / Group",
+    "departmentPlaceholder": "e.g., Mechanical & Piping Engineering",
+    "experienceLevel": "Experience Level",
+    "primaryDiscipline": "Primary Engineering Discipline",
+    "additionalContext": "Additional Professional Context (Optional)",
+    "additionalContextPlaceholder": "e.g., Working on brownfield revamping of an aluminum reduction plant with tight tie-in windows.",
+    "industries": "Industry & Facility Types",
+    "projectStages": "Current Project Stages",
+    "responsibilities": "Core Responsibilities",
+    "deliverables": "Common Deliverables Produced",
+    "additionalDisciplines": "Interfacing Disciplines",
+    "software": "Engineering & Office Software Used",
+    "detailLevel": "Response Detail Level",
+    "unitSystem": "Preferred Unit System",
+    "outputLanguage": "Generated Profile Language",
+    "outputLanguageHelp": "Choose whether the generated AI prompt text should match the UI language, or be locked to English or Persian.",
+    "customText": "Custom Directives & Notes",
+    "customTextPlaceholder": "e.g., Always adhere to plant safety shutdown procedures. Format all transmittal references as TR-XXXX-YYYY."
+  },
+  "experienceLevels": {
+    "junior": "Junior / Graduate Engineer (0-3 years)",
+    "mid": "Mid-Level Design / Project Engineer (4-8 years)",
+    "senior": "Senior Specialist / Lead Discipline Engineer (8-15 years)",
+    "principal": "Principal Engineer / Chief Technical Specialist (15+ years)",
+    "manager": "Engineering Manager / Technical Project Director"
+  },
+  "disciplines": {
+    "civil": "Civil & Structural Engineering",
+    "mechanical": "Mechanical Equipment (Static & Rotating)",
+    "electrical": "Electrical Systems (MV/LV & Power)",
+    "process": "Process Engineering & Metallurgy",
+    "piping": "Piping Engineering & Stress Analysis",
+    "instrumentation": "Instrumentation & Control (I&C / DCS)",
+    "hvac": "HVAC & Industrial Ventilation",
+    "project_eng": "Project Engineering & Interdisciplinary",
+    "construction": "Construction & Erection Engineering",
+    "procurement": "Procurement & Technical Vendor Review",
+    "planning": "Planning, Scheduling & Project Controls",
+    "doc_control": "Technical Office & Document Control"
+  },
+  "industries": {
+    "steel_making": "Steel-Making Plants (EAF/BOF, Caster, Rolling Mills)",
+    "aluminum_smelting": "Aluminum Smelters & Alumina Refineries",
+    "metal_production": "Non-Ferrous Metal Production (Copper, Zinc, Lead)",
+    "mineral_processing": "Mineral Processing & Beneficiation Plants",
+    "industrial_plants": "Heavy Industrial & Chemical Plants",
+    "utilities_offsites": "Utilities & Offsites (Water, Air, Gas, Effluent)",
+    "greenfield": "Greenfield Projects (New Facilities)",
+    "brownfield": "Brownfield Projects (Revamp, Retrofit & Tie-Ins)",
+    "epc_epcm": "EPC / EPCM Contracting Environments"
+  },
+  "projectStages": {
+    "conceptual": "Conceptual Study & Feasibility",
+    "basic_eng": "Basic Engineering & FEED",
+    "detailed_eng": "Detailed Design Engineering",
+    "procurement_phase": "Procurement & Vendor Engineering",
+    "construction_phase": "Construction & Field Erection",
+    "commissioning": "Pre-commissioning & Commissioning",
+    "operation_maint": "Operations, Turnaround & Maintenance"
+  },
+  "responsibilities": {
+    "calc_notes": "Preparation & Verification of Calculation Notes",
+    "specs_datasheets": "Drafting Equipment Specifications & Datasheets",
+    "drawings_review": "Engineering Drawing & 3D Model Review",
+    "vendor_eval": "Technical Bid Evaluation (TBE/TBR) & Vendor Reviews",
+    "crs_handling": "Comment Resolution Sheets (CRS) & Client Responses",
+    "site_supervision": "Technical Site Query (TSQ) & Field Clarifications",
+    "interdisciplinary": "Cross-Discipline Interface & Clash Resolution",
+    "code_compliance": "Regulatory & International Standard Compliance"
+  },
+  "deliverables": {
+    "design_criteria": "Design Criteria & Basis of Design (BOD)",
+    "calc_books": "Engineering Calculation Books",
+    "tech_specs": "Technical Specifications & Material Requisitions",
+    "equipment_datasheets": "Equipment Datasheets & Schedule Tables",
+    "drawings_sld_pid": "Single Line Diagrams, P&IDs & Isometrics",
+    "tbe_reports": "Technical Bid Evaluation Reports",
+    "punch_lists": "Pre-Commissioning Punch Lists & Handover Dossiers",
+    "boq_mto": "Bill of Quantities (BOQ) & Material Take-Off (MTO)"
+  },
+  "software": {
+    "autocad": "AutoCAD (2D Drafting & Layouts)",
+    "navisworks": "Autodesk Navisworks (Clash Detection & 3D Review)",
+    "inventor": "Autodesk Inventor (3D Mechanical Modeling)",
+    "pdms": "AVEVA PDMS (3D Plant Modeling)",
+    "e3d": "AVEVA E3D (Everywhere 3D Plant Design)",
+    "sap2000": "CSI SAP2000 (Structural FEA Analysis)",
+    "etabs": "CSI ETABS (Building Structural Analysis)",
+    "safe": "CSI SAFE (Foundation & Concrete Slab Design)",
+    "tekla": "Tekla Structures (BIM Steel & Concrete Detailing)",
+    "idea_statica": "IDEA StatiCa (CBFEM Steel Connection Design)",
+    "rhino": "Rhino 3D (Complex Geometric Modeling)",
+    "solidworks": "Dassault SolidWorks (Equipment & Part Design)",
+    "etap": "ETAP (Power System Analysis & Short Circuit)",
+    "eplan": "EPLAN Electric (Electrical Schematic Automation)",
+    "excel": "Microsoft Excel (Advanced Calculation Sheets & VBA)",
+    "word": "Microsoft Word (Specifications & Formal Reports)",
+    "powerpoint": "Microsoft PowerPoint (Technical Presentations & Decks)"
+  },
+  "generalSkills": {
+    "tech_writing": {
+      "name": "Technical Writing & Design Criteria",
+      "desc": "Clear, objective, unambiguous engineering prose with defined terminology and passive/active consistency.",
+      "prompt": "Enforce rigorous technical writing standards: use objective, unambiguous language; define all acronyms upon first usage; formulate clear requirements with 'shall' for mandatory criteria, 'should' for recommendations, and 'may' for optional items; avoid vague qualitative assertions like 'optimal' or 'adequate' without verifiable numerical thresholds."
+    },
+    "ms_word": {
+      "name": "Microsoft Word Document Structuring",
+      "desc": "Guidance for structured engineering specs, formal tables, numbered clauses, and cross-references.",
+      "prompt": "When structuring documentation intended for Microsoft Word: organize into hierarchical numbered sections (1.0, 1.1, 1.1.1); recommend clean table layouts with standard header formatting; suggest caption styles for figures and tables; structure appendices logically; ensure content is ready for copy-pasting into corporate document templates without formatting artifacts."
+    },
+    "ms_excel": {
+      "name": "Microsoft Excel Calculations & Formulations",
+      "desc": "Engineering spreadsheets, dynamic formulas, formula documentation, and sanity check tables.",
+      "prompt": "When assisting with Microsoft Excel engineering tools: provide clean, robust cell formulas (e.g., INDEX/MATCH, XLOOKUP, LET, IFS); structure inputs, intermediate calculations, and final output summary blocks clearly; include cell formatting and unit conventions; suggest built-in error checks (data validation, boundary warnings); when requested, provide clean VBA or macros with thorough comments."
+    },
+    "ms_powerpoint": {
+      "name": "Executive & Technical Presentations",
+      "desc": "Structured slide narratives, technical graphics recommendations, and bullet points for leadership.",
+      "prompt": "When outlining technical presentation decks: structure slides around one key takeaway per slide; formulate punchy, information-dense headlines rather than generic category titles; balance technical rigor with visual clarity; organize trade-offs into comparative 3-column matrices; format bullet points as actionable conclusions rather than raw data dumps."
+    },
+    "meetings_actions": {
+      "name": "Meeting Minutes & Action Item Tracking",
+      "desc": "Professional Minutes of Meeting (MoM), decisions log, action item matrices, and punch lists.",
+      "prompt": "When drafting Minutes of Meeting (MoM) or action item trackers: strictly document: (1) Meeting Objective & Date, (2) Key Discussions & Agreed Decisions, (3) Numbered Action Item Table containing Action ID, Task Description, Responsible Person/Discipline, and Hard Due Date; maintain neutral, objective factual wording; avoid emotional tone."
+    },
+    "formal_correspondence": {
+      "name": "Formal Engineering Correspondence & Transmittals",
+      "desc": "Formal contractual letters, client transmittals, requests for information (RFI), and variation notices.",
+      "prompt": "When drafting formal engineering correspondence, RFIs, or document transmittal cover letters: use professional contractual engineering language; state the precise project name, contract/work package reference, and specific document numbers; clearly separate contractual notices from technical clarifications; specify the required response timeframe."
+    },
+    "doc_review_crs": {
+      "name": "Document Review & Comment Resolution Sheets (CRS)",
+      "desc": "Structured technical comments, code references, severity classifications (Major/Minor/Typo), and responses.",
+      "prompt": "When conducting engineering document reviews or populating Comment Resolution Sheets (CRS): structure comments with Document Number, Page/Paragraph/Clause Reference, Review Comment with Engineering Justification, Proposed Corrective Action, and Severity (Major / Minor / Editorial); formulate comments constructively with direct citations to project specifications or codes."
+    },
+    "data_analysis": {
+      "name": "Technical Data Analysis & Statistical Trends",
+      "desc": "Analyzing industrial test records, process measurements, lab assays, and performance curves.",
+      "prompt": "When analyzing engineering data or test trends: compute and state descriptive statistical metrics (mean, standard deviation, min, max, percentile); identify outliers and potential measurement anomalies; compare data against baseline design thresholds; present findings in structured Markdown comparison tables with explicit engineering units."
+    },
+    "technical_reporting": {
+      "name": "Technical Inspection & Feasibility Reports",
+      "desc": "Site inspection reports, failure analyses, root-cause investigations, and technology assessments.",
+      "prompt": "When drafting technical investigation or inspection reports: maintain the standard engineering structure: Executive Summary, Background & Scope, Observations & Methodology, Technical Findings, Root Cause Analysis, and Prioritized Recommendations; clearly separate physical field observations from theoretical analytical deductions."
+    },
+    "project_coordination": {
+      "name": "Interdisciplinary EPC Coordination",
+      "desc": "Interface management, battery limits, civil-mechanical-electrical battery limits, and clash management.",
+      "prompt": "When coordinating interdisciplinary EPC issues: proactively identify and document physical, electrical, and process interfaces; specify physical battery limits (B/L) and tie-in points with coordinates/elevations; detail loads transferred between disciplines (e.g., dynamic equipment loads on civil foundations); highlight lead times for long-lead interface items."
+    }
+  },
+  "disciplineSkills": {
+    "civil_structural": {
+      "name": "Civil & Structural Engineering",
+      "desc": "Concrete foundations, structural steel, wind/seismic load combinations, and connection design.",
+      "prompt": "For Civil and Structural Engineering tasks: strictly adhere to international codes (e.g., AISC 360, ACI 318, Eurocodes, ASCE 7); explicitly state all load combinations (Dead, Live, Wind, Seismic, Equipment Operating/Empty/Hydrotest, Thermal); distinguish between serviceability limit states (deflections, vibrations) and ultimate strength limit states; specify member profiles, steel grades, rebar cover, and concrete characteristic strengths; provide clear calculation steps with governing formulas."
+    },
+    "mechanical_equip": {
+      "name": "Mechanical Equipment (Static & Rotating)",
+      "desc": "Pumps, compressors, pressure vessels, tanks, heat exchangers, material handling, and datasheets.",
+      "prompt": "For Mechanical Equipment tasks: reference applicable standards (e.g., ASME Section VIII, API 650, API 610, ISO 13709); for rotating equipment, highlight operating points, NPSHa vs NPSHr margins, driver sizing factors, vibration limits, and lubrication requirements; for static equipment, state design pressure/temperature, corrosion allowance, radiography factors, and nozzle schedules; require full datasheets with operating vs design conditions."
+    },
+    "electrical_power": {
+      "name": "Electrical Systems (Power, MV/LV & Substation)",
+      "desc": "Single-line diagrams, load flow, short circuit, cable sizing, motor control, and earthing.",
+      "prompt": "For Electrical Power tasks: reference standards such as IEC 60364, IEC 60909, IEEE 141/399; clearly structure electrical load lists with continuous, intermittent, and standby loads including diversity and power factors; in short-circuit and protection evaluations, state peak and breaking capacities; specify voltage levels, transformer impedance, cable derating factors (ambient temp, grouping, burial depth), and earthing/lightning protection requirements."
+    },
+    "process_metallurgy": {
+      "name": "Process Engineering & Metallurgy",
+      "desc": "Mass & heat balances, PFDs, P&IDs, hydraulics, relief valve sizing, and chemical metallurgy.",
+      "prompt": "For Process Engineering and Metallurgy tasks: verify mass, molar, and energy balance conservation; explicitly detail stream parameters (temperature, pressure, phase fraction, density, viscosity, mass flow rate); for P&ID reviews, specify piping classes, valve types, slope requirements, instrumentation loops, interlocks, and fail-safe valve positions; evaluate overpressure scenarios and relief sizing in accordance with API 520/521."
+    },
+    "piping_stress": {
+      "name": "Piping Engineering & Stress Analysis",
+      "desc": "Piping specifications, wall thickness, flexibility/stress analysis, tie-in schedules, and supports.",
+      "prompt": "For Piping Engineering tasks: comply with ASME B31.3 / B31.1; verify pipe wall thickness calculations under internal design pressure, corrosion allowance, and mill tolerance; consider thermal expansion, nozzle load allowable limits on connected equipment, and seismic/slug load cases in flexibility reviews; formulate comprehensive tie-in lists with coordinate locations, isolation philosophy, hot-tap feasibility, and shutdown durations."
+    },
+    "instrumentation_control": {
+      "name": "Instrumentation & Control (I&C / DCS / PLC)",
+      "desc": "Instrument index, I/O lists, control narratives, loop diagrams, SIL/SIS, and field transmitters.",
+      "prompt": "For Instrumentation & Control tasks: specify instrument technology based on process medium, hazardous area classification (ATEX/IECEx/NEC), and process conditions; organize I/O lists with tag, service description, signal type (AI, AO, DI, DO, Fieldbus), range, alarm setpoints, and fail-safe state; formulate functional control narratives and cause-and-effect matrices (C&E); address Safety Instrumented Systems (SIS) according to IEC 61508 / 61511."
+    },
+    "hvac_ventilation": {
+      "name": "HVAC & Industrial Ventilation",
+      "desc": "Control room pressurization, battery room exhaust, cooling/heating loads, and air change rates.",
+      "prompt": "For HVAC & Industrial Ventilation tasks: compute sensible and latent thermal loads; specify room design conditions (temperature, relative humidity, positive/negative differential pressure); enforce air change rates per hour (ACH) based on hazard classification (e.g., NFPA for battery rooms or electrical substation pressurization); detail filtration stages (pre-filters, HEPA, chemical carbon filters for toxic industrial environments); specify equipment redundancy (N+1)."
+    },
+    "construction_erection": {
+      "name": "Construction & Field Erection Engineering",
+      "desc": "Constructability reviews, heavy lift rigging studies, erection sequences, and site inspection test plans.",
+      "prompt": "For Construction & Erection tasks: focus on practical site execution feasibility, sequencing, and access clearances; review heavy lift plans noting crane capacities, boom angles, ground bearing pressure, and rigging safety factors; detail Inspection and Test Plans (ITP) with Hold, Witness, and Review points; address site welding procedures (WPS/PQR), bolt torquing protocols, and pre-alignment tolerances."
+    },
+    "procurement_tbe": {
+      "name": "Procurement & Technical Bid Evaluation (TBE)",
+      "desc": "Material requisitions, vendor technical evaluations, deviation lists, and submittal review cycles.",
+      "prompt": "For Technical Procurement tasks: structure Technical Bid Evaluations (TBE) into clear compliance matrices: Scope of Supply, Technical Compliance with Specification, Deviations & Exceptions, Sub-vendor List, Spare Parts & Special Tools, and Delivery Schedule; mark vendor deviations explicitly as Acceptable, Acceptable with Clarification, or Unacceptable; maintain strict objective fairness without bias."
+    },
+    "planning_project_controls": {
+      "name": "Planning, Scheduling & Project Controls",
+      "desc": "Work Breakdown Structure (WBS), Primavera P6 schedule logic, Critical Path Method (CPM), and S-curves.",
+      "prompt": "For Planning & Project Controls tasks: develop logically linked Work Breakdown Structures (WBS) down to work package level; audit schedule networks for proper logic links (predecessors, successors) avoiding arbitrary lead/lag constraints; calculate Total Float and identify the Critical Path; evaluate progress using Earned Value Analysis (PV, EV, AC, CPI, SPI); project milestone completion dates and suggest schedule recovery measures."
+    }
+  },
+  "preferences": {
+    "detailLevel": {
+      "brief": "Executive / Concise (Bullet points, key conclusions, direct numbers)",
+      "balanced": "Balanced / Standard (Clear explanations with structured details)",
+      "rigorous": "Deep Engineering Rigor (Full calculation steps, derivations, comprehensive clauses)"
+    },
+    "unitSystem": {
+      "si_metric": "International System of Units (SI / Metric: mm, m, kg, kN, MPa, °C, bar)",
+      "imperial": "US Customary / Imperial (in, ft, lb, kip, psi, °F, psig)",
+      "project_mixed": "Project-Specific Mixed (e.g., metric structural/civil, inch NPS piping, barg pressure)"
+    },
+    "outputLanguage": {
+      "match": "Match Active Interface Language (English or Persian)",
+      "en": "Always Output in English (Recommended for international EPC work)",
+      "fa": "Always Output in Persian (مناسب برای پروژه‌های داخلی و مکاتبات فارسی)"
+    },
+    "toggles": {
+      "askClarifications": {
+        "label": "Ask Clarifying Questions",
+        "desc": "If design inputs, battery limits, or process conditions are missing or ambiguous, ask before making critical assumptions."
+      },
+      "stateAssumptions": {
+        "label": "Explicitly State Assumptions",
+        "desc": "State all baseline parameters, design temperatures, ambient conditions, and material grades assumed."
+      },
+      "showFormulas": {
+        "label": "Show Formulas & Calculation Steps",
+        "desc": "Include governing engineering equations, substituted numerical values, intermediate steps, and dimensional unit checks."
+      },
+      "strictStandards": {
+        "label": "Reference Recognized Industry Codes & Standards",
+        "desc": "Cite official standards (ISO, ASME, ASTM, IEEE, API, DIN, EN) accurately. Never invent fictitious clause numbers, revision years, or ASTM grades."
+      },
+      "engineeringChecklists": {
+        "label": "Provide Verification & QA/QC Checklists",
+        "desc": "Include actionable engineering checklists for design reviews, model audits, or document handover."
+      },
+      "safetyRisks": {
+        "label": "Highlight Process Safety & Environmental Risks",
+        "desc": "Flag hazardous areas, toxic releases, overpressure scenarios, thermal expansion stresses, and constructability hazards."
+      },
+      "disciplineInterfaces": {
+        "label": "Highlight Interdisciplinary Interfaces",
+        "desc": "Explicitly call out impacts on other disciplines (e.g., dynamic equipment weights on civil foundations, electrical loads for I&C)."
+      },
+      "tabularFormat": {
+        "label": "Use Structured Tables for Complex Data",
+        "desc": "Present equipment schedules, comparison studies, bill of quantities, and technical trade-offs in clean Markdown tables."
+      },
+      "factsVsAssumptions": {
+        "label": "Distinguish Verified Project Data from Assumptions",
+        "desc": "Clearly label confirmed client specifications as [VERIFIED FACT] and inferred values as [ASSUMPTION - SUBJECT TO VERIFICATION]."
+      }
+    }
+  },
+  "actions": {
+    "copy": "Copy Profile to Clipboard",
+    "copied": "Profile Copied to Clipboard!",
+    "copyFailed": "Could not copy automatically. Please select text and press Ctrl+C / Cmd+C.",
+    "downloadMd": "Download (.md)",
+    "downloadTxt": "Download (.txt)",
+    "exportJson": "Export JSON",
+    "importJson": "Import JSON",
+    "reset": "Reset Form",
+    "resetConfirm": "Are you sure you want to reset all form selections to default values?",
+    "importSuccess": "Profile imported successfully from JSON configuration.",
+    "importError": "Failed to import file. The JSON file is invalid or corrupted.",
+    "charCount": "characters",
+    "maxLimit": "Maximum limit"
+  },
+  "howItWorks": {
+    "title": "How to Use This Profile Builder in Your Engineering Workflow",
+    "step1": {
+      "title": "1. Configure Your Professional Persona",
+      "desc": "Specify your discipline, experience level, plant type, and key engineering software tools. This ensures the AI understands your technical vocabulary and expected engineering deliverable standards."
+    },
+    "step2": {
+      "title": "2. Select Professional & Discipline Skill Modules",
+      "desc": "Choose relevant communication, calculation, drafting, and discipline-specific technical rules. Each module injects proven, real-world EPC guidelines into your instructions."
+    },
+    "step3": {
+      "title": "3. Calibrate Rigor & Anti-Hallucination Guardrails",
+      "desc": "Turn on strict citation rules, calculation displays, and assumption separation. This prevents AI chatbots from fabricating phantom standard clauses or making unstated engineering leaps."
+    },
+    "step4": {
+      "title": "4. Paste into Your AI Assistant",
+      "desc": "Copy the generated prompt into ChatGPT 'Custom Instructions', Claude 'Project System Prompt', Microsoft Copilot, or your internal enterprise LLM. Save or export your JSON profile for future project reuse."
+    }
+  },
+  "footer": {
+    "projectTitle": "Engineering AI Profile & Skill Builder",
+    "projectDesc": "Open-source, client-side web application for engineering teams working in heavy industry, metal plants, utilities, and EPC/EPCM projects.",
+    "author": "Created by Hossein Golshan",
+    "license": "Licensed under the MIT License",
+    "repo": "GitHub Repository",
+    "pages": "GitHub Pages Website",
+    "privacy": "Zero-tracking, 100% client-side execution.",
+    "disclaimer": "AI prompt generator only. Not a substitute for certified professional engineering review."
+  },
+  "generator": {
+    "systemRole": "ROLE & PROFESSIONAL IDENTITY",
+    "systemRoleBody": "You are acting as a specialized Senior Technical Engineering Consultant and Subject Matter Expert assisting the following engineering professional:",
+    "professionalContext": "PROFESSIONAL & PROJECT CONTEXT",
+    "responsibilities": "CORE RESPONSIBILITIES & DELIVERABLES",
+    "skills": "MANDATORY SKILL MODULES & TECHNICAL GUIDANCE",
+    "software": "SOFTWARE ECOSYSTEM & DATA CONSTRAINTS",
+    "softwareNote": "CRITICAL SOFTWARE DIRECTIVE: You do NOT have direct API, file-system, or execution access to open, run, edit, or compile proprietary engineering software files (.dwg, .nwd, .dgn, .edb, .sdb, .p6, etc.) unless explicitly supported in this environment. Provide precise input values, formulas, syntax, modeling guidelines, and scripts for the human engineer to execute in their respective software tools.",
+    "responseRules": "ENGINEERING RIGOR, VERIFICATION & RESPONSE RULES",
+    "customInstructions": "PROJECT-SPECIFIC & USER DIRECTIVES",
+    "verificationDisclaimer": "MANDATORY PROFESSIONAL DISCLAIMER & VERIFICATION CLAUSE",
+    "disclaimerText": "ALL OUTPUTS, CALCULATIONS, FORMULAS, AND ADVICE PRODUCED BY THIS AI ASSISTANT CONSTITUTE PRELIMINARY DRAFT RECOMMENDATIONS ONLY. THEY DO NOT CONSTITUTE APPROVED, CERTIFIED, OR STAMPED ENGINEERING WORK. ALL DESIGNS, MATERIAL SELECTIONS, SIZING CALCULATIONS, AND SPECIFICATIONS MUST BE INDEPENDENTLY CALCULATED, AUDITED, AND STAMPED BY A QUALIFIED, LICENSED PROFESSIONAL ENGINEER IN ACCORDANCE WITH APPLICABLE JURISDICTIONAL LAWS AND PROJECT SPECIFICATIONS BEFORE TENDER, PROCUREMENT, OR CONSTRUCTION.",
+    "noneSpecified": "None explicitly specified by user.",
+    "verifiedFactsNote": "Distinguish between confirmed client inputs [VERIFIED FACT] and your own technical deductions [ASSUMPTION]. Never present an unverified assumption as a confirmed design parameter."
+  }
 }

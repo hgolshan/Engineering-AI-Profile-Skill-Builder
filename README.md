@@ -1,170 +1,239 @@
-# 🤖 AI Context Profile Generator
+# Engineering AI Profile & Skill Builder
 
-An interactive, open-source tool that helps professionals create precise, high-leverage
-context profiles and custom instructions for AI assistants like ChatGPT, Claude, and Gemini.
+> **Live Website:** [https://hgolshan.github.io/Engineering-AI-Profile-Skill-Builder/](https://hgolshan.github.io/Engineering-AI-Profile-Skill-Builder/)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
-[![Live Demo](https://img.shields.io/badge/demo-live-blue.svg)](https://hgolshan.github.io/ai-context-generator/)
+An open-source, bilingual (English & Persian) web application engineered for industrial plants, metal facilities, and EPC/EPCM engineering teams. It enables professionals to generate structured, verified, ready-to-paste AI profiles and discipline-specific instructions without hallucinated standards or security risks.
 
-**➡️ [Try it live](https://hgolshan.github.io/ai-context-generator/)** — no install, no signup, nothing leaves your browser.
+Developed by **Hossein Golshan** ([github.com/hgolshan](https://github.com/hgolshan)).
 
 ---
 
-## 📌 Project Overview
+## Table of Contents
 
-Most people use AI models on default settings and get generic, overly cautious, or
-needlessly verbose answers. Modern models perform dramatically better when given
-background context — but writing effective system instructions by hand is slow and
-most users never get around to it.
-
-**AI Context Profile Generator** fixes this with a lightweight interactive form. It asks
-targeted questions about your role, tools, expertise level, and preferred output format,
-then generates a tailored, copy-pasteable context profile you can drop straight into your
-AI platform's settings.
-
-![Screenshot of the generator interface](docs/screenshot.png)
+1. [What This Tool Does](#what-this-tool-does)
+2. [Target Industries & Engineering Disciplines](#target-industries--engineering-disciplines)
+3. [Key Features](#key-features)
+4. [Architecture & Zero-Risk Privacy](#architecture--zero-risk-privacy)
+5. [GitHub Pages Deployment Instructions](#github-pages-deployment-instructions)
+6. [Updating the Website](#updating-the-website)
+7. [Local Development & Testing](#local-development--testing)
+8. [Adding a New Language](#adding-a-new-language)
+9. [Adding or Editing Skill Modules](#adding-or-editing-skill-modules)
+10. [Generating the Optional Word Proposal (.docx)](#generating-the-optional-word-proposal-docx)
+11. [Project Validation](#project-validation)
+12. [Professional Engineering Disclaimer](#professional-engineering-disclaimer)
+13. [License](#license)
 
 ---
 
-## 📄 Sample Output
+## 1. What This Tool Does
 
-<details>
-<summary><b>Click to see a generated profile</b></summary>
+When engineers interact with general-purpose AI assistants (ChatGPT, Claude, Microsoft Copilot, Gemini, DeepSeek, or local LLMs), default responses often suffer from three major pitfalls:
+1. **Generic Tone**: Superficial high-level summaries unsuitable for formal engineering deliverables.
+2. **Hallucinated Standards**: Fabricating nonexistent ASTM, ASME, or ISO clause numbers, invalid ASTM grades, or phantom formulas.
+3. **Hidden Assumptions**: Generating numbers without declaring boundary limits, design temperatures, or unit conventions.
 
-```markdown
-## About Me
-Senior Network Engineer at a regional ISP. I design and maintain
-multi-vendor enterprise backbone infrastructure.
+**Engineering AI Profile & Skill Builder** solves this by generating deterministic, modular system instructions that enforce:
+- Authentic engineering vocabulary and role-appropriate technical depth.
+- Explicit declaration of all assumptions and boundary conditions.
+- Step-by-step formula derivations and dimensional unit checks (SI or Imperial).
+- Actionable checklists and interdisciplinary battery limit (B/L) tracking.
+- Strict anti-hallucination rules that prevent fabricating standard clauses.
 
-## My Stack
-Cisco IOS-XE, Juniper Junos, Arista EOS, Ansible, Python, NetBox
+---
 
-## My Expertise Level
-Expert. Assume deep familiarity with BGP, OSPF, MPLS, and VRF internals.
-Do not explain fundamentals unless I ask.
+## 2. Target Industries & Engineering Disciplines
 
-## How to Respond
-- Lead with the answer. No preambles, no "Great question!"
-- Provide complete, runnable configurations — never placeholder fragments
-- Explicitly flag any command that is service-impacting or destructive
-- Prefer CLI over GUI instructions
-- When multiple valid approaches exist, state your recommendation and why
+### Target Industries
+- **Steel-Making Plants**: Electric Arc Furnaces (EAF), Basic Oxygen Furnaces (BOF), Continuous Casters, Rolling Mills.
+- **Aluminum & Alumina**: Reduction potlines, anode plants, casthouses, and alumina refineries.
+- **Metal Production & Mineral Processing**: Copper, zinc, and lead smelters; concentrators, ball mills, and beneficiation plants.
+- **Heavy Industrial & Petrochemical**: Industrial utility complexes, water treatment, air separation units (ASU), and offsites.
+- **Greenfield & Brownfield EPC/EPCM**: New facility development, brownfield tie-ins, revamping, and shutdown debottlenecking.
 
-## Constraints
-- Never invent command syntax. If unsure, say so
-- Cite vendor documentation versions when behaviour is version-specific
+### Supported Disciplines
+- Civil & Structural Engineering (Concrete foundations, structural steel, seismic/wind analysis)
+- Mechanical Equipment (Static pressure vessels, storage tanks, rotating machinery, pumps, compressors)
+- Electrical Systems (Substations, MV/LV power distribution, SLD, short circuit, protection)
+- Process Engineering & Metallurgy (PFD, P&ID, mass & heat balances, hydraulics, relief valves)
+- Piping Engineering (Pipe specs, wall thickness, flexibility analysis, tie-in schedules)
+- Instrumentation & Control (DCS, PLC, loop diagrams, I/O lists, Cause & Effect, SIS)
+- HVAC & Industrial Ventilation (Control room pressurization, hazardous area air changes, cooling loads)
+- Construction & Erection (Heavy lift rigging, constructability reviews, ITP plans)
+- Procurement & Vendor Engineering (Technical Bid Evaluations [TBE], deviation matrices)
+- Planning & Project Controls (Work Breakdown Structure [WBS], Primavera P6 logic, Critical Path [CPM])
+- Technical Office & Document Control (DCC transmittals, Comment Resolution Sheets [CRS], QA/QC)
+
+---
+
+## 3. Key Features
+
+- **Instant Live Composition**: See the generated system prompt update synchronously with every checkbox or field change.
+- **Full Bilingual Localization**: Complete parity across English (LTR) and Persian (RTL) for all UI elements, explanations, and generated texts.
+- **Flexible Output Language Selector**: Choose to generate prompts matching the UI language, or strictly lock prompt generation to English or Persian.
+- **One-Click Actions**:
+  - Copy prompt directly to clipboard (with robust fallback).
+  - Download as Markdown (`.md`) or Plain Text (`.txt`).
+  - Export configuration as schema-validated JSON.
+  - Import previous JSON configurations with validation and error handling.
+  - Reset form to defaults with confirmation modal.
+- **Dark & Light Industrial Themes**: Carefully calibrated WCAG AA contrast palettes with persistent preference storage.
+- **Zero External Dependencies**: Uses native browser technologies, standard system font stacks, and zero external trackers or CDNs.
+
+---
+
+## 4. Architecture & Zero-Risk Privacy
+
+This project is built as a **pure static client-side web application**:
+- **Hosted Exclusively on GitHub Pages**: No Node.js server, Python backend, or database.
+- **Zero Runtime AI API Calls**: Text generation is deterministic template composition performed in JavaScript.
+- **Zero Network Data Leakage**: Your profile configuration, job titles, and custom instructions never leave your browser.
+- **Safe DOM APIs**: User inputs are treated strictly as data (via `textContent` and `value`)—never injected as raw HTML.
+
+---
+
+## 5. GitHub Pages Deployment Instructions
+
+The production site is published exclusively through **GitHub Actions**. Follow these steps to configure your repository:
+
+### Step 1: Push Code to GitHub
+Ensure all repository files are pushed to the `main` branch of your GitHub repository:
+```bash
+git remote add origin https://github.com/hgolshan/Engineering-AI-Profile-Skill-Builder.git
+git branch -M main
+git push -u origin main
 ```
-</details>
+
+### Step 2: Configure Repository Settings
+1. Navigate to your repository on GitHub: `https://github.com/hgolshan/Engineering-AI-Profile-Skill-Builder`
+2. Click on the **Settings** tab.
+3. In the left navigation sidebar, click on **Pages** (under the "Code and automation" section).
+4. Under **Build and deployment** → **Source**, change the dropdown from **"Deploy from a branch"** to **"GitHub Actions"**.
+5. Save the setting.
+
+### Step 3: Automated Deployment
+- GitHub Actions will automatically detect `.github/workflows/deploy-pages.yml` and trigger a deployment whenever commits are pushed to `main`.
+- You can monitor the deployment progress under the **Actions** tab of your repository.
+- Once completed, your live site will be accessible at:
+  **`https://hgolshan.github.io/Engineering-AI-Profile-Skill-Builder/`**
 
 ---
 
-## 🔬 Before / After
+## 6. Updating the Website
 
-| Prompt | Default AI | With Generated Profile |
-|---|---|---|
-| *"How do I filter BGP routes?"* | Explains what BGP is, offers a generic `route-map` snippet with placeholders, adds three safety disclaimers. | Returns a complete prefix-list + route-map config for the correct platform, flags the `clear bgp` soft-reset as impacting, notes the version caveat. |
-
----
-
-## ✨ Features
-
-- **⚡ Fast** — a complete profile in under two minutes
-- **🎯 Role presets** — IT & systems administration, network engineering, software development, civil / mechanical / electrical engineering, language learning, and
-  management, with more added over time
-- **🔒 Private by design** — 100% client-side. No backend, no analytics, no network
-  requests. Verify it yourself in DevTools → Network
-- **🌍 Multi-language** — [English and Persian, with full RTL support], extensible via
-  simple JSON files in `/locales`
-- **🌐 Zero dependencies** — pure HTML / CSS / JS. No build step, no `npm install`
-- - **🧠 Reasoning modes** — go beyond tone. Choose how the AI *thinks*:
-  Absolute (answer first, zero preamble), Chain-of-Thought (show reasoning), Socratic (guiding questions), or Critical Review (surface edge cases and flaws before proposing)
-
----
-
-## 🚀 How to Use
-
-1. Open the **[live generator](https://hgolshan.github.io/ai-context-generator/)**.
-2. Fill in your role, key tools, communication style, and any hard rules
-   (e.g. *"skip introductions"*, *"always give complete configs"*).
-3. Click **Generate Profile**.
-4. Click **Copy to Clipboard**.
-5. Paste it into your platform's instruction field.
-
-### Where to paste it
-
-| Platform | Location | Notes |
-|---|---|---|
-| **ChatGPT** | Settings → Personalization → Custom Instructions | Tight character limit per box — see below |
-| **Claude** | Project Instructions, or Settings → Personal Preferences | Generous limit; full profiles fit comfortably |
-| **Gemini** | Saved Info / Gem instructions | — |
-| **GitHub Copilot** | `.github/copilot-instructions.md` in your repo | Per-project, version-controlled |
-
-> **⚠️ Note on length:** ChatGPT's custom instruction fields have a relatively small
-> character limit and will silently truncate longer input. If your generated profile is
-> long, either trim it or use the shorter output preset. Claude Projects and Copilot
-> instruction files accept much longer profiles.
-
----
-
-## 🛠️ Local Development
-
-This is a zero-dependency static web app — no build tooling required.
-
-1. Clone the repository:
-
+To update the website in the future:
+1. Make your changes locally.
+2. Commit and push your changes to `main`:
    ```bash
-   git clone https://github.com/hgolshan/ai-context-generator.git
+   git add .
+   git commit -m "Update engineering skills and documentation"
+   git push origin main
    ```
-
-2. Enter the project folder:
-
-   ```bash
-   cd ai-context-generator
-   ```
-
-3. Serve the directory over HTTP. A local server is required so `fetch()` can load the
-   translation files in `/locales` — opening `index.html` directly via `file://` will
-   trigger CORS errors.
-
-   **Python 3:**
-
-   ```bash
-   python3 -m http.server 8000
-   ```
-
-   Then open <http://localhost:8000>.
-
-   **Node.js:**
-
-   ```bash
-   npx serve
-   ```
-
-   **VS Code:** right-click `index.html` → *Open with Live Server*.
+3. GitHub Actions will automatically build the artifact and deploy the latest version to GitHub Pages within 1–2 minutes.
 
 ---
 
-## 🗺️ Roadmap
+## 7. Local Development & Testing
 
-- [ ] Per-platform output presets with a live character counter
-- [ ] Save / load profiles as local JSON (versioned schema)
-- [ ] Download as `.md`
-- [ ] Additional role presets — research, editorial & journalism, design, legal, education
-- [ ] Additional language packs
+Modern browsers block `fetch()` requests to local JSON files when opened directly via the `file://` protocol. To test the site locally, launch a lightweight HTTP server:
 
----
+### Option A: Python 3 (Built-in, Recommended)
+```bash
+# Navigate to the repository root directory
+python3 -m http.server 8000
+```
+Open your browser and navigate to: `http://localhost:8000`
 
-## 🤝 Contributing
-
-Contributions are very welcome — new language packs, role presets, or refinements to the
-prompt templates. Adding a language is the easiest place to start: copy an existing file
-in `/locales`, translate the values, and open a PR.
-
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) first.
+### Option B: Node.js (npx serve)
+```bash
+npx serve .
+```
 
 ---
 
-## 📄 License
+## 8. Adding a New Language
 
-MIT — see [LICENSE](LICENSE).
+The application is engineered for easy localization:
+1. Open `locales/index.json` and register your new language entry:
+   ```json
+   {
+     "code": "es",
+     "name": "Spanish",
+     "localName": "Español",
+     "dir": "ltr",
+     "default": false
+   }
+   ```
+2. Duplicate `locales/en.json` to `locales/es.json`.
+3. Translate all values in `locales/es.json` while keeping key names identical.
+4. Run `python3 validate_project.py` to verify key parity.
+5. The language selector will automatically include the new language on page reload.
+
+---
+
+## 9. Adding or Editing Skill Modules
+
+To introduce a new engineering or general skill:
+1. In `assets/js/app.js`:
+   Add your new module ID to `WHITELISTS.generalSkills` or `WHITELISTS.disciplineSkills`.
+2. In `locales/en.json` and `locales/fa.json`:
+   Add the corresponding module definition with `name`, `desc`, and `prompt`:
+   ```json
+   "corrosion_control": {
+     "name": "Cathodic Protection & Corrosion Control",
+     "desc": "Cathodic protection criteria, coating specs, and corrosion monitoring in industrial plants.",
+     "prompt": "For Corrosion & Cathodic Protection tasks: comply with NACE/AMPP and ISO 15589 standards..."
+   }
+   ```
+3. The new module will automatically render as a selectable card in the form and integrate into generated outputs.
+
+---
+
+## 10. Generating the Optional Word Proposal (.docx)
+
+A complete project proposal is provided in Markdown format at `docs/PROJECT_PROPOSAL.md`.
+
+An optional Python development script is included to convert this proposal into a professionally formatted Microsoft Word document:
+
+```bash
+# 1. Install python-docx (only required for this local developer utility)
+pip install python-docx
+
+# 2. Run the script to generate the .docx file
+python3 docs/build_docx.py
+```
+
+The output file will be created at:
+`docs/Engineering_AI_Profile_Skill_Builder_Proposal.docx`
+
+---
+
+## 11. Project Validation
+
+A Python standard-library validation script is included in the root directory to verify project integrity:
+
+```bash
+python3 validate_project.py
+```
+
+The script verifies:
+- JSON syntax of all files in `locales/`.
+- 100% key parity between `en.json` and `fa.json`.
+- Existence of all HTML element IDs referenced by `assets/js/app.js`.
+- Correct relative asset paths suitable for GitHub Pages subfolder hosting.
+
+---
+
+## 12. Professional Engineering Disclaimer
+
+> **CRITICAL NOTICE**: **Engineering AI Profile & Skill Builder** generates instructions and system prompts for third-party AI assistants. It does **NOT** perform engineering calculations, finite element simulations, or structural code checks.
+>
+> All calculations, sizing evaluations, equipment datasheets, single-line diagrams, and material recommendations produced by any AI assistant must be independently reviewed, verified, calculated, and stamped by licensed, qualified professional engineers prior to being utilized in tender, design, procurement, or construction activities.
+
+---
+
+## 13. License
+
+This project is licensed under the [MIT License](LICENSE).
+
+Copyright (c) 2026 **Hossein Golshan**.

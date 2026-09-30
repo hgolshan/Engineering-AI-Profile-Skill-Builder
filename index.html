@@ -1,524 +1,425 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Context Profile Generator</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #2563eb;
-      --primary-hover: #1d4ed8;
-      --bg-main: #f8fafc;
-      --card-bg: #ffffff;
-      --text-main: #0f172a;
-      --text-muted: #64748b;
-      --border: #e2e8f0;
-      --chip-bg: #eff6ff;
-      --chip-text: #1e40af;
-      --chip-border: #bfdbfe;
-      --radius: 8px;
-    }
+<!doctype html>
+<html lang="en" dir="ltr" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Engineering AI Profile & Skill Builder</title>
+    <meta name="description" content="Bilingual (EN/FA) open-source tool for industrial and EPC engineering teams to build verified, reusable AI profiles and domain skill instructions." />
+    
+    <!-- Open Graph & Social Cards -->
+    <meta property="og:title" content="Engineering AI Profile & Skill Builder" />
+    <meta property="og:description" content="Bilingual (EN/FA) open-source tool for industrial and EPC engineering teams to build verified, reusable AI profiles and domain skill instructions." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://hgolshan.github.io/Engineering-AI-Profile-Skill-Builder/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Engineering AI Profile & Skill Builder" />
+    <meta name="twitter:description" content="Open-source bilingual web application for engineering teams to build verified AI prompts and skill instructions." />
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Inter', 'Vazirmatn', sans-serif;
-      background-color: var(--bg-main);
-      color: var(--text-main);
-      line-height: 1.5;
-      padding: 24px 16px;
-    }
+    <!-- Favicon & Stylesheet (Relative paths for GitHub Pages subfolder compatibility) -->
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <!-- Top Navigation Bar (One-Row, 3-Zone Contract) -->
+    <header class="top-header" role="banner">
+      <div class="top-header-inner">
+        <!-- Zone 1: Single Brand Wordmark -->
+        <a href="#top" class="brand-zone" aria-label="Engineering AI Profile & Skill Builder Home">
+          <svg class="brand-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="64" height="64" rx="14" fill="#0f172a"/>
+            <path d="M32 14c1.1 0 2 .9 2 2v2.2a14.1 14.1 0 0 1 4.3 1.8l1.6-1.6a2 2 0 0 1 2.8 0l2.8 2.8a2 2 0 0 1 0 2.8l-1.6 1.6c.8 1.3 1.4 2.8 1.8 4.3H48a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2.3a14.1 14.1 0 0 1-1.8 4.3l1.6 1.6a2 2 0 0 1 0 2.8l-2.8 2.8a2 2 0 0 1-2.8 0l-1.6-1.6a14.1 14.1 0 0 1-4.3 1.8V48a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-2.3a14.1 14.1 0 0 1-4.3-1.8l-1.6 1.6a2 2 0 0 1-2.8 0l-2.8-2.8a2 2 0 0 1 0-2.8l1.6-1.6a14.1 14.1 0 0 1-1.8-4.3H16a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h2.3a14.1 14.1 0 0 1 1.8-4.3l-1.6-1.6a2 2 0 0 1 0-2.8l2.8-2.8a2 2 0 0 1 2.8 0l1.6 1.6a14.1 14.1 0 0 1 4.3-1.8V16a2 2 0 0 1 2-2h4z" stroke="#3b82f6" stroke-width="3" stroke-linejoin="round"/>
+            <circle cx="32" cy="32" r="7" fill="#1e293b" stroke="#60a5fa" stroke-width="2.5"/>
+            <circle cx="32" cy="32" r="2.5" fill="#38bdf8"/>
+          </svg>
+          <span class="brand-text" data-i18n="nav.brand">Engineering AI Profile Builder</span>
+        </a>
 
-    .container { max-width: 960px; margin: 0 auto; }
+        <!-- Zone 2: Navigation Links -->
+        <nav class="nav-zone" aria-label="Main Navigation">
+          <a href="#builder" class="nav-link" data-i18n="nav.builder">Profile Builder</a>
+          <a href="#general-skills" class="nav-link" data-i18n="nav.skills">Skill Modules</a>
+          <a href="#how-it-works" class="nav-link" data-i18n="nav.howItWorks">How It Works</a>
+          <a href="#privacy" class="nav-link" data-i18n="nav.privacy">Privacy & Disclaimer</a>
+        </nav>
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 24px;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
+        <!-- Zone 3: Actions (Language, Theme, GitHub) -->
+        <div class="actions-zone">
+          <!-- Language Selector -->
+          <div class="lang-select-wrapper">
+            <select id="lang-select" class="lang-select" aria-label="Select Language">
+              <option value="en">English (EN)</option>
+              <option value="fa">فارسی (FA)</option>
+            </select>
+            <svg class="lang-select-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+            </svg>
+          </div>
 
-    .title-area h1 { font-size: 1.5rem; font-weight: 700; }
-    .title-area p { color: var(--text-muted); font-size: 0.875rem; }
+          <!-- Theme Toggle Button -->
+          <button id="theme-toggle-btn" class="control-btn icon-only" type="button" aria-label="Toggle Theme" title="Toggle Theme">
+            <svg id="theme-icon" class="icon-svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
 
-    .lang-select-wrapper { display: flex; align-items: center; gap: 8px; }
-
-    select, input, textarea {
-      font-family: inherit;
-      width: 100%;
-      padding: 10px 12px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      background-color: #fff;
-      color: var(--text-main);
-      font-size: 0.875rem;
-    }
-
-    select:focus, input:focus, textarea:focus {
-      outline: 2px solid var(--primary);
-      border-color: transparent;
-    }
-
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-    }
-
-    .card-title {
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .presets-group, .chips-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 8px;
-    }
-
-    .preset-btn, .chip-btn {
-      background: var(--bg-main);
-      border: 1px solid var(--border);
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .preset-btn:hover, .chip-btn:hover {
-      background: var(--chip-bg);
-      color: var(--chip-text);
-      border-color: var(--chip-border);
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-
-    @media (max-width: 640px) {
-      .form-grid { grid-template-columns: 1fr; }
-    }
-
-    .form-group { margin-bottom: 16px; }
-
-    .form-group label {
-      display: block;
-      font-size: 0.875rem;
-      font-weight: 500;
-      margin-bottom: 6px;
-    }
-
-    .platform-tabs {
-      display: flex;
-      border-bottom: 2px solid var(--border);
-      margin-bottom: 12px;
-    }
-
-    .tab-btn {
-      padding: 8px 16px;
-      border: none;
-      background: none;
-      font-weight: 600;
-      font-size: 0.875rem;
-      color: var(--text-muted);
-      cursor: pointer;
-      border-bottom: 2px solid transparent;
-      margin-bottom: -2px;
-    }
-
-    .tab-btn.active {
-      color: var(--primary);
-      border-bottom-color: var(--primary);
-    }
-
-    .platform-instruction {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      background: #f1f5f9;
-      padding: 8px 12px;
-      border-radius: 6px;
-      margin-bottom: 12px;
-    }
-
-    /* Force Output Area to Always Stay Left-to-Right (LTR) */
-    textarea.output-box {
-      font-family: monospace;
-      min-height: 240px;
-      resize: vertical;
-      background-color: #1e293b;
-      color: #f8fafc;
-      direction: ltr !important;
-      text-align: left !important;
-    }
-
-    .actions {
-      display: flex;
-      justify-content: flex-end;
-      gap: 12px;
-      margin-top: 12px;
-    }
-
-    .btn-primary {
-      background-color: var(--primary);
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      border-radius: var(--radius);
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .btn-primary:hover { background-color: var(--primary-hover); }
-
-    html[dir="rtl"] { direction: rtl; font-family: 'Vazirmatn', sans-serif; }
-  </style>
-</head>
-<body>
-
-  <div class="container">
-    <header>
-      <div class="title-area">
-        <h1 data-i18n="app_title">🤖 AI Context Profile Generator</h1>
-        <p data-i18n="app_subtitle">Create optimized system prompts for Gemini, Claude, and ChatGPT in seconds.</p>
-      </div>
-      <div class="lang-select-wrapper">
-        <label for="langSelect" data-i18n="label_language">Language:</label>
-        <select id="langSelect" style="width: auto;" onchange="changeLanguage(this.value)">
-          <option value="en">English</option>
-          <option value="fa">فارسی</option>
-        </select>
+          <!-- GitHub Repo Link -->
+          <a href="https://github.com/hgolshan/Engineering-AI-Profile-Skill-Builder" target="_blank" rel="noopener noreferrer" class="control-btn" aria-label="GitHub Repository" title="GitHub Repository">
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+            </svg>
+            <span class="sr-only">GitHub</span>
+          </a>
+        </div>
       </div>
     </header>
 
-    <!-- Quick Presets -->
-    <div class="card">
-      <div class="card-title" data-i18n="title_presets">⚡ Quick Discipline & Role Presets</div>
-      <div class="presets-group">
-        <button class="preset-btn" onclick="applyPreset('net_architect')" data-i18n="preset_net_arch">Network & IT Architect</button>
-        <button class="preset-btn" onclick="applyPreset('it_auditor')" data-i18n="preset_it_auditor">IT Auditor & Compliance</button>
-        <button class="preset-btn" onclick="applyPreset('web_dev')" data-i18n="preset_web_dev">Full-Stack Web Developer</button>
-        <button class="preset-btn" onclick="applyPreset('devops')" data-i18n="preset_devops">DevOps & Cloud Engineer</button>
-        <button class="preset-btn" onclick="applyPreset('electrical')" data-i18n="preset_electrical">Electrical Engineer</button>
-        <button class="preset-btn" onclick="applyPreset('civil_struct')" data-i18n="preset_civil">Civil & Structural Engineer</button>
-        <button class="preset-btn" onclick="applyPreset('piping_mech')" data-i18n="preset_piping">Piping & Mechanical Engineer</button>
-        <button class="preset-btn" onclick="applyPreset('process_chem')" data-i18n="preset_process">Process Engineer (Steel/Aluminum)</button>
-        <button class="preset-btn" onclick="applyPreset('instrumentation')" data-i18n="preset_inst">Instrumentation & Control</button>
-        <button class="preset-btn" onclick="applyPreset('architectural')" data-i18n="preset_arch">Architectural Specialist</button>
-        <button class="preset-btn" onclick="applyPreset('custom')" data-i18n="preset_other">➕ Other / Custom Role</button>
+    <!-- Main Content Container -->
+    <main id="top" class="page-container" role="main">
+      <!-- Hero Section -->
+      <section class="hero-section" aria-labelledby="hero-title">
+        <div class="hero-kicker" data-i18n="hero.kicker">Industrial & EPC AI Workflow Designer</div>
+        <h1 id="hero-title" class="hero-title" data-i18n="hero.title">
+          Build Verified AI Profiles for Professional Engineering Teams
+        </h1>
+        <p class="hero-subtitle" data-i18n="hero.subtitle">
+          Create structured, discipline-grounded instructions for ChatGPT, Claude, Microsoft Copilot, or local LLMs. Tailored for heavy industry, metal plants, utilities, and EPC/EPCM projects with zero hallucinated standards.
+        </p>
+        <div class="hero-ctas">
+          <a href="#builder" class="control-btn primary" data-i18n="hero.ctaStart">Start Building Profile</a>
+          <a href="#how-it-works" class="control-btn" data-i18n="hero.ctaGuide">View Workflow Guide</a>
+        </div>
+      </section>
+
+      <!-- Engineering Verification Disclaimer -->
+      <aside id="privacy" class="notice-box warning" role="note" aria-labelledby="disclaimer-title">
+        <div class="notice-icon-col" aria-hidden="true">
+          <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+          </svg>
+        </div>
+        <div>
+          <h2 id="disclaimer-title" class="sr-only" data-i18n="disclaimer.title">Professional Engineering Verification Notice</h2>
+          <strong data-i18n="disclaimer.title">Professional Engineering Verification Notice</strong>
+          <p data-i18n="disclaimer.text">
+            This application generates deterministic text prompts and reusable instructions for AI assistants. It does NOT perform engineering calculations, finite element analysis, or code certification. All outputs produced by third-party AI systems must be independently checked, verified, and stamped by qualified professional engineers before being used in tender, design, procurement, or construction activities.
+          </p>
+        </div>
+      </aside>
+
+      <!-- Client-Side Privacy Notice -->
+      <aside class="notice-box info" role="note" aria-labelledby="privacy-title">
+        <div class="notice-icon-col" aria-hidden="true">
+          <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+          </svg>
+        </div>
+        <div>
+          <h2 id="privacy-title" class="sr-only" data-i18n="privacyNotice.title">Client-Side Privacy Guarantee</h2>
+          <strong data-i18n="privacyNotice.title">Client-Side Privacy Guarantee</strong>
+          <p data-i18n="privacyNotice.text">
+            All profile generation, saving, and export happens 100% locally in your web browser. No project data, job descriptions, or custom instructions are ever sent to an external server or analytics service. Do NOT paste proprietary, classified, or confidential plant telemetry into unauthorized public AI chatbots.
+          </p>
+        </div>
+      </aside>
+
+      <!-- Main Workspace: Form Builder vs Sticky Live Preview -->
+      <div id="builder" class="workspace-grid">
+        <!-- Left: Form Builder Column -->
+        <div class="builder-column">
+          <!-- Section 1: Professional Identity -->
+          <section class="form-section" aria-labelledby="sec-identity-title">
+            <div class="section-header">
+              <h2 id="sec-identity-title" class="section-title" data-i18n="sections.identity.title">1. Professional Identity</h2>
+              <p class="section-desc" data-i18n="sections.identity.desc">Define your role, discipline, and level of experience to calibrate AI tone and depth.</p>
+            </div>
+
+            <div class="form-group">
+              <label for="field-profile-name" class="form-label" data-i18n="fields.profileName">Profile Name (Optional)</label>
+              <input id="field-profile-name" type="text" class="form-input" data-i18n-placeholder="fields.profileNamePlaceholder" placeholder="e.g., Senior Mechanical Piping Lead - Smelter Project" maxlength="120" />
+            </div>
+
+            <div class="form-group">
+              <label for="field-job-title" class="form-label" data-i18n="fields.jobTitle">Job Title</label>
+              <input id="field-job-title" type="text" class="form-input" data-i18n-placeholder="fields.jobTitlePlaceholder" placeholder="e.g., Senior Lead Piping Engineer" maxlength="120" />
+            </div>
+
+            <div class="form-group">
+              <label for="field-department" class="form-label" data-i18n="fields.department">Department / Group</label>
+              <input id="field-department" type="text" class="form-input" data-i18n-placeholder="fields.departmentPlaceholder" placeholder="e.g., Mechanical & Piping Engineering" maxlength="120" />
+            </div>
+
+            <div class="form-group">
+              <label for="field-discipline" class="form-label" data-i18n="fields.primaryDiscipline">Primary Engineering Discipline</label>
+              <select id="field-discipline" class="form-select"></select>
+            </div>
+
+            <div class="form-group">
+              <label for="field-experience" class="form-label" data-i18n="fields.experienceLevel">Experience Level</label>
+              <select id="field-experience" class="form-select"></select>
+            </div>
+
+            <div class="form-group">
+              <label for="field-context" class="form-label" data-i18n="fields.additionalContext">Additional Professional Context (Optional)</label>
+              <textarea id="field-context" class="form-textarea" data-i18n-placeholder="fields.additionalContextPlaceholder" placeholder="e.g., Working on brownfield revamping of an aluminum reduction plant with tight tie-in windows." maxlength="600"></textarea>
+            </div>
+          </section>
+
+          <!-- Section 2: Engineering Environment & Context -->
+          <section class="form-section" aria-labelledby="sec-env-title">
+            <div class="section-header">
+              <h2 id="sec-env-title" class="section-title" data-i18n="sections.environment.title">2. Engineering Environment & Context</h2>
+              <p class="section-desc" data-i18n="sections.environment.desc">Specify your industry, project phase, responsibilities, deliverables, and engineering software.</p>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" data-i18n="fields.industries">Industry & Facility Types</label>
+              <div id="grid-industries"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" data-i18n="fields.projectStages">Current Project Stages</label>
+              <div id="grid-stages"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" data-i18n="fields.responsibilities">Core Responsibilities</label>
+              <div id="grid-responsibilities"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" data-i18n="fields.deliverables">Common Deliverables Produced</label>
+              <div id="grid-deliverables"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" data-i18n="fields.additionalDisciplines">Interfacing Disciplines</label>
+              <div id="grid-add-disciplines"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" data-i18n="fields.software">Engineering & Office Software Used</label>
+              <div id="grid-software"></div>
+            </div>
+          </section>
+
+          <!-- Section 3: General Professional Skills -->
+          <section id="general-skills" class="form-section" aria-labelledby="sec-gen-skills-title">
+            <div class="section-header">
+              <h2 id="sec-gen-skills-title" class="section-title" data-i18n="sections.generalSkills.title">3. General Professional Skills</h2>
+              <p class="section-desc" data-i18n="sections.generalSkills.desc">Select communication, documentation, and coordination skill instructions to inject into your profile.</p>
+            </div>
+            <div id="grid-general-skills"></div>
+          </section>
+
+          <!-- Section 4: Discipline-Specific Engineering Skills -->
+          <section class="form-section" aria-labelledby="sec-disc-skills-title">
+            <div class="section-header">
+              <h2 id="sec-disc-skills-title" class="section-title" data-i18n="sections.disciplineSkills.title">4. Discipline-Specific Engineering Skills</h2>
+              <p class="section-desc" data-i18n="sections.disciplineSkills.desc">Select technical engineering guidelines relevant to your specific domain.</p>
+            </div>
+            <div id="grid-discipline-skills"></div>
+          </section>
+
+          <!-- Section 5: AI Preferences & Rigor Guardrails -->
+          <section class="form-section" aria-labelledby="sec-pref-title">
+            <div class="section-header">
+              <h2 id="sec-pref-title" class="section-title" data-i18n="sections.preferences.title">5. AI Response & Verification Preferences</h2>
+              <p class="section-desc" data-i18n="sections.preferences.desc">Configure exact engineering rigor rules, unit conventions, and anti-hallucination guardrails.</p>
+            </div>
+
+            <div class="form-group">
+              <label for="field-detail-level" class="form-label" data-i18n="fields.detailLevel">Response Detail Level</label>
+              <select id="field-detail-level" class="form-select"></select>
+            </div>
+
+            <div class="form-group">
+              <label for="field-unit-system" class="form-label" data-i18n="fields.unitSystem">Preferred Unit System</label>
+              <select id="field-unit-system" class="form-select"></select>
+            </div>
+
+            <div class="form-group">
+              <label for="field-output-lang" class="form-label" data-i18n="fields.outputLanguage">Generated Profile Language</label>
+              <p class="form-label-desc" data-i18n="fields.outputLanguageHelp">Choose whether the generated AI prompt text should match the UI language, or be locked to English or Persian.</p>
+              <select id="field-output-lang" class="form-select"></select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Engineering Rigor & Verification Guardrails</label>
+              <div id="grid-toggles"></div>
+            </div>
+          </section>
+
+          <!-- Section 6: Custom Instructions -->
+          <section class="form-section" aria-labelledby="sec-custom-title">
+            <div class="section-header">
+              <h2 id="sec-custom-title" class="section-title" data-i18n="sections.custom.title">6. Custom Instructions & Organizational Standards</h2>
+              <p class="section-desc" data-i18n="sections.custom.desc">Add company-specific guidelines, project naming rules, or personal directives.</p>
+            </div>
+            <div class="form-group">
+              <label for="field-custom-text" class="form-label" data-i18n="fields.customText">Custom Directives & Notes</label>
+              <textarea id="field-custom-text" class="form-textarea" data-i18n-placeholder="fields.customTextPlaceholder" placeholder="e.g., Always adhere to plant safety shutdown procedures. Format all transmittal references as TR-XXXX-YYYY." maxlength="1000"></textarea>
+              <div id="custom-text-counter" class="char-counter">0 / 1000 characters</div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Right: Sticky Live Output Preview Column -->
+        <div class="output-column">
+          <div class="output-card">
+            <!-- Output Header & Primary Actions -->
+            <div class="output-header">
+              <div class="output-title-group">
+                <h2 data-i18n="sections.output.title">Generated Engineering AI Profile</h2>
+                <p data-i18n="sections.output.desc">Copy this structured prompt and paste it into your AI assistant system prompt, custom instructions, or project memory.</p>
+              </div>
+              <div class="output-actions-bar">
+                <button id="copy-btn" class="control-btn primary" type="button" aria-label="Copy Profile">
+                  <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                  </svg>
+                  <span data-i18n="actions.copy">Copy Profile</span>
+                </button>
+                <button id="download-md-btn" class="control-btn" type="button" aria-label="Download Markdown">
+                  <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                  </svg>
+                  <span data-i18n="actions.downloadMd">Download (.md)</span>
+                </button>
+                <button id="download-txt-btn" class="control-btn" type="button" aria-label="Download Text">
+                  <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                  </svg>
+                  <span data-i18n="actions.downloadTxt">Download (.txt)</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Output Text Area (Live Deterministic Generation) -->
+            <div class="output-body">
+              <textarea id="output-text" class="output-textarea" readonly aria-label="Generated AI Profile Content"></textarea>
+            </div>
+
+            <!-- Secondary Actions: Export/Import/Reset -->
+            <div class="data-actions-bar">
+              <div class="data-actions-left">
+                <button id="export-json-btn" class="control-btn" type="button" aria-label="Export JSON Configuration">
+                  <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="17 8 12 3 7 8"/>
+                    <line x1="12" y1="3" x2="12" y2="15"/>
+                  </svg>
+                  <span data-i18n="actions.exportJson">Export JSON</span>
+                </button>
+                <button id="import-json-btn" class="control-btn" type="button" aria-label="Import JSON Configuration">
+                  <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                  </svg>
+                  <span data-i18n="actions.importJson">Import JSON</span>
+                </button>
+                <input id="import-file-input" type="file" accept=".json,application/json" class="hidden" aria-hidden="true" />
+              </div>
+              <div class="data-actions-right">
+                <button id="reset-btn" class="control-btn" type="button" aria-label="Reset Form">
+                  <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                    <path d="M3 3v5h5"/>
+                  </svg>
+                  <span data-i18n="actions.reset">Reset Form</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- How It Works Section -->
+      <section id="how-it-works" class="guide-section" aria-labelledby="guide-title">
+        <h2 id="guide-title" class="guide-title" data-i18n="howItWorks.title">
+          How to Use This Profile Builder in Your Engineering Workflow
+        </h2>
+        <div class="guide-steps-grid">
+          <div class="guide-step-card">
+            <div class="guide-step-number">STEP 01</div>
+            <h3 data-i18n="howItWorks.step1.title">1. Configure Your Professional Persona</h3>
+            <p data-i18n="howItWorks.step1.desc">
+              Specify your discipline, experience level, plant type, and key engineering software tools. This ensures the AI understands your technical vocabulary and expected engineering deliverable standards.
+            </p>
+          </div>
+          <div class="guide-step-card">
+            <div class="guide-step-number">STEP 02</div>
+            <h3 data-i18n="howItWorks.step2.title">2. Select Professional & Discipline Skill Modules</h3>
+            <p data-i18n="howItWorks.step2.desc">
+              Choose relevant communication, calculation, drafting, and discipline-specific technical rules. Each module injects proven, real-world EPC guidelines into your instructions.
+            </p>
+          </div>
+          <div class="guide-step-card">
+            <div class="guide-step-number">STEP 03</div>
+            <h3 data-i18n="howItWorks.step3.title">3. Calibrate Rigor & Anti-Hallucination Guardrails</h3>
+            <p data-i18n="howItWorks.step3.desc">
+              Turn on strict citation rules, calculation displays, and assumption separation. This prevents AI chatbots from fabricating phantom standard clauses or making unstated engineering leaps.
+            </p>
+          </div>
+          <div class="guide-step-card">
+            <div class="guide-step-number">STEP 04</div>
+            <h3 data-i18n="howItWorks.step4.title">4. Paste into Your AI Assistant</h3>
+            <p data-i18n="howItWorks.step4.desc">
+              Copy the generated prompt into ChatGPT 'Custom Instructions', Claude 'Project System Prompt', Microsoft Copilot, or your internal enterprise LLM. Save or export your JSON profile for future project reuse.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Reset Confirmation Modal -->
+    <div id="reset-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-reset-title">
+      <div class="modal-dialog">
+        <h2 id="modal-reset-title" class="modal-title" data-i18n="actions.reset">Reset Form</h2>
+        <p class="modal-body" data-i18n="actions.resetConfirm">
+          Are you sure you want to reset all form selections to default values?
+        </p>
+        <div class="modal-actions">
+          <button id="reset-cancel-btn" class="control-btn" type="button">Cancel</button>
+          <button id="reset-confirm-btn" class="control-btn primary" type="button">Confirm Reset</button>
+        </div>
       </div>
     </div>
 
-    <!-- Main Form -->
-    <div class="card">
-      <div class="form-grid">
-        <div class="form-group">
-          <label for="roleTitle" data-i18n="label_role">Primary Discipline & Role Title</label>
-          <input type="text" id="roleTitle" placeholder="e.g., Senior Metallurgical & Process Engineer / Structural Specialist">
-        </div>
-        <div class="form-group">
-          <label for="seniority" data-i18n="label_seniority">Seniority & Project Scope</label>
-          <select id="seniority">
-            <option value="Senior / Lead Consultant (Industrial EPC / Enterprise)" data-i18n="opt_senior">Senior / Lead (Industrial EPC / Enterprise)</option>
-            <option value="Mid-Level Project Engineer" data-i18n="opt_mid">Mid-Level Project Engineer</option>
-            <option value="Junior / Field Specialist" data-i18n="opt_junior">Junior / Field Specialist</option>
-          </select>
-        </div>
-      </div>
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
 
-      <div class="form-group">
-        <label for="techStack" data-i18n="label_stack">Primary Stack, Standards & Software Tools</label>
-        <input type="text" id="techStack" placeholder="e.g., METSIM, ASPEN Plus, AutoCAD, Revit, ETABS, SmartPlant 3D, ASME, ISO, API">
-        <div class="chips-group">
-          <button class="chip-btn" onclick="appendChip('techStack', 'METSIM & Mass/Energy Balance')">+ METSIM</button>
-          <button class="chip-btn" onclick="appendChip('techStack', 'ASME / API Standards')">+ ASME/API</button>
-          <button class="chip-btn" onclick="appendChip('techStack', 'IEEE / IEC Standards')">+ IEEE/IEC</button>
-          <button class="chip-btn" onclick="appendChip('techStack', 'AutoCAD & Revit')">+ CAD/Revit</button>
-          <button class="chip-btn" onclick="appendChip('techStack', 'ETABS & SAP2000')">+ ETABS</button>
-          <button class="chip-btn" onclick="appendChip('techStack', 'MikroTik RouterOS 7.x')">+ RouterOS 7</button>
-          <button class="chip-btn" onclick="appendChip('techStack', 'Docker & Compose')">+ Docker</button>
+    <!-- Footer -->
+    <footer class="site-footer" role="contentinfo">
+      <div class="footer-inner">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <h3 data-i18n="footer.projectTitle">Engineering AI Profile & Skill Builder</h3>
+            <p data-i18n="footer.projectDesc">
+              Open-source, client-side web application for engineering teams working in heavy industry, metal plants, utilities, and EPC/EPCM projects.
+            </p>
+          </div>
+          <div class="footer-links">
+            <a href="https://hgolshan.github.io/Engineering-AI-Profile-Skill-Builder/" class="footer-link" data-i18n="footer.pages">GitHub Pages Website</a>
+            <a href="https://github.com/hgolshan/Engineering-AI-Profile-Skill-Builder" target="_blank" rel="noopener noreferrer" class="footer-link" data-i18n="footer.repo">GitHub Repository</a>
+            <a href="https://github.com/hgolshan" target="_blank" rel="noopener noreferrer" class="footer-link" data-i18n="footer.author">Created by Hossein Golshan</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span data-i18n="footer.license">Licensed under the MIT License</span>
+          <span data-i18n="footer.privacy">Zero-tracking, 100% client-side execution.</span>
+          <span data-i18n="footer.disclaimer">AI prompt generator only. Not a substitute for certified professional engineering review.</span>
         </div>
       </div>
+    </footer>
 
-      <div class="form-grid">
-        <div class="form-group">
-          <label for="reasoningMode" data-i18n="label_reasoning">Reasoning & Interaction Mode</label>
-          <select id="reasoningMode">
-            <option value="Direct Execution (No Fluff, Scannable Tables/Lists)" data-i18n="opt_direct">Direct Execution (No Fluff, Bulleted)</option>
-            <option value="Chain-of-Thought (Step-by-Step Logic First)" data-i18n="opt_cot">Chain-of-Thought (Logic First)</option>
-            <option value="Socratic Review & Security/Safety Audit" data-i18n="opt_socratic">Socratic & Safety/Security Audit</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="outputFormat" data-i18n="label_format">Primary Output Style</label>
-          <input type="text" id="outputFormat" placeholder="e.g., Scannable Markdown, Technical Data Sheets, Calculation Sheets">
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="negativeConstraints" data-i18n="label_constraints">Hard Negative Constraints (What to Avoid)</label>
-        <textarea id="negativeConstraints" rows="2" placeholder="e.g., No introductory greetings, cite specific standard codes, no estimated calculations without units."></textarea>
-        <div class="chips-group">
-          <button class="chip-btn" onclick="appendChip('negativeConstraints', 'No introductory fluff or greetings.')">+ No Fluff</button>
-          <button class="chip-btn" onclick="appendChip('negativeConstraints', 'Cite specific standard clauses (ASME/IEEE/ISO).')">+ Cite Standards</button>
-          <button class="chip-btn" onclick="appendChip('negativeConstraints', 'Always include engineering units in calculations.')">+ Force Units</button>
-        </div>
-      </div>
-
-      <button class="btn-primary" style="width: 100%;" onclick="generatePrompt()" data-i18n="btn_generate">🚀 Generate Context Profile</button>
-    </div>
-
-    <!-- Output Section -->
-    <div class="card">
-      <div class="platform-tabs">
-        <button class="tab-btn active" id="tab-gemini" onclick="switchPlatform('gemini')">Gemini (Markdown)</button>
-        <button class="tab-btn" id="tab-claude" onclick="switchPlatform('claude')">Claude (XML)</button>
-        <button class="tab-btn" id="tab-chatgpt" onclick="switchPlatform('chatgpt')">ChatGPT (Skills)</button>
-      </div>
-
-      <div id="platformGuide" class="platform-instruction">
-        📌 <strong>Gemini Instructions:</strong> Go to Settings & Help (⚙️) → Personal Intelligence → Instructions for Gemini, then paste this block.
-      </div>
-
-      <!-- Forced dir="ltr" on Output Box -->
-      <textarea id="outputBox" class="output-box" dir="ltr" readonly></textarea>
-
-      <div class="actions">
-        <button class="btn-primary" onclick="copyToClipboard()" data-i18n="btn_copy">📋 Copy to Clipboard</button>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    let currentPlatform = 'gemini';
-    let currentLang = 'en';
-    let translations = {};
-
-    const presets = {
-      net_architect: {
-        role: "Senior Network & Security Architect",
-        seniority: "Senior / Lead Consultant (Industrial EPC / Enterprise)",
-        stack: "MikroTik RouterOS 7.x, Sophos XGS, Cisco Catalyst, WireGuard, IPsec, OSPF",
-        mode: "Direct Execution (No Fluff, Scannable Tables/Lists)",
-        format: "Scannable Markdown with complete CLI commands and network topology tables",
-        constraints: "No introductory greetings. No pseudocode. Always specify exact syntax for RouterOS 7."
-      },
-      it_auditor: {
-        role: "Lead IT Auditor & Compliance Specialist",
-        seniority: "Senior / Lead Consultant (Industrial EPC / Enterprise)",
-        stack: "ISO 27001, NIST CSF, Active Directory, Veeam v13, Linux System Logs",
-        mode: "Socratic Review & Security/Safety Audit",
-        format: "Structured Audit Matrix (Risk, Severity, Evidence Required, Remediation)",
-        constraints: "Focus on risk mitigation and evidence gathering. Avoid generic managerial platitudes."
-      },
-      web_dev: {
-        role: "Full-Stack Web Developer",
-        seniority: "Mid-Level Project Engineer",
-        stack: "HTML5, CSS3, Modern JS (ES6+), Docker, REST APIs, PHP 8.x",
-        mode: "Chain-of-Thought (Step-by-Step Logic First)",
-        format: "Clean, well-commented complete code blocks without missing implementations",
-        constraints: "Do not omit code using comments like '// ... rest of code'. Provide complete, runnable snippets."
-      },
-      devops: {
-        role: "DevOps & Cloud Systems Engineer",
-        seniority: "Senior / Lead Consultant (Industrial EPC / Enterprise)",
-        stack: "Docker, Docker Compose, Debian/Ubuntu Linux, Bash, Git, Nginx Reverse Proxy",
-        mode: "Direct Execution (No Fluff, Scannable Tables/Lists)",
-        format: "Production-ready YAML and Bash scripts",
-        constraints: "Ensure root/non-root permissions and security best practices are strictly detailed."
-      },
-      electrical: {
-        role: "Senior Electrical Design Engineer",
-        seniority: "Senior / Lead Consultant (Industrial EPC / Enterprise)",
-        stack: "ETAP, AutoCAD Electrical, IEEE 1584, IEC 60364, SLD, Switchgear, Arc Flash",
-        mode: "Chain-of-Thought (Step-by-Step Logic First)",
-        format: "Step-by-step engineering calculation sheets and Single-Line Diagram specs",
-        constraints: "Always state assumed voltage levels, power factors, and reference IEEE/IEC standards."
-      },
-      civil_struct: {
-        role: "Structural Engineering Specialist",
-        seniority: "Senior / Lead Consultant (Industrial EPC / Enterprise)",
-        stack: "ETABS, SAP2000, ACI 318, AISC 360, Eurocode 2/3, Revit Structure",
-        mode: "Chain-of-Thought (Step-by-Step Logic First)",
-        format: "Structural load combination tables and design verification reports",
-        constraints: "Distinguish clearly between Serviceability (SLS) and Ultimate Limit States (ULS)."
-      },
-      piping_mech: {
-        role: "Piping & Mechanical Systems Engineer",
-        seniority: "Senior / Lead Consultant (Industrial EPC / Enterprise)",
-        stack: "SmartPlant 3D, CAESAR II, ASME B31.3, ASME B31.1, API 610, HVAC",
-        mode: "Direct Execution (No Fluff, Scannable Tables/Lists)",
-        format: "Piping material specifications (PMS) and stress analysis summary tables",
-        constraints: "Reference exact ASME design pressure/temperature limits and schedule ratings."
-      },
-      process_chem: {
-        role: "Senior Metallurgical & Industrial Process Engineer",
-        seniority: "Senior / Lead Consultant (Industrial EPC / Enterprise)",
-        stack: "METSIM, ASPEN Plus, PFD, P&ID, Mass & Energy Balance, BOF, EAF, Bayer Process, Hall-Héroult, ISO/API",
-        mode: "Chain-of-Thought (Step-by-Step Logic First)",
-        format: "Heat & Mass Balance Sheets, Equipment Datasheets, and PFD/P&ID Flow Schemes",
-        constraints: "Focus on heavy industrial metallurgy (steelmaking, aluminum refining/smelting, gas cleaning, material handling). Avoid pure organic/lab chemical reactions."
-      },
-      instrumentation: {
-        role: "Instrumentation & Control Systems (I&C) Engineer",
-        seniority: "Senior / Lead Consultant (Industrial EPC / Enterprise)",
-        stack: "DCS, PLC, SCADA, ISA-5.1, SIL Rating (IEC 61508/61511), Control Valves",
-        mode: "Socratic Review & Security/Safety Audit",
-        format: "Instrument Loop Diagrams, I/O lists, and Cause & Effect Matrices",
-        constraints: "Prioritize fail-safe design states (Fail Open / Fail Closed) and SIL requirements."
-      },
-      architectural: {
-        role: "Lead Architectural Specialist & BIM Manager",
-        seniority: "Senior / Lead Consultant (Industrial EPC / Enterprise)",
-        stack: "Autodesk Revit, Rhino 3D, IBC (International Building Code), ADA, BIM 360",
-        mode: "Direct Execution (No Fluff, Scannable Tables/Lists)",
-        format: "BIM Execution Plans (BEP), wall section schedules, and code compliance summaries",
-        constraints: "Specify occupancy classifications and fire-resistance ratings for all material specs."
-      },
-      custom: {
-        role: "",
-        seniority: "Senior / Lead Consultant (Industrial EPC / Enterprise)",
-        stack: "",
-        mode: "Direct Execution (No Fluff, Scannable Tables/Lists)",
-        format: "Scannable Markdown",
-        constraints: "No introductory fluff or greetings."
-      }
-    };
-
-    async function changeLanguage(lang) {
-      currentLang = lang;
-      document.documentElement.setAttribute('dir', lang === 'fa' ? 'rtl' : 'ltr');
-      document.documentElement.setAttribute('lang', lang);
-
-      try {
-        const response = await fetch(`./locales/${lang}.json`);
-        if (!response.ok) throw new Error(`Could not load ${lang}.json`);
-        translations = await response.json();
-        
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-          const key = el.getAttribute('data-i18n');
-          if (translations[key]) {
-            el.textContent = translations[key];
-          }
-        });
-      } catch (err) {
-        console.error('Localization error:', err);
-      }
-    }
-
-    function applyPreset(key) {
-      const p = presets[key];
-      if (!p) return;
-      document.getElementById('roleTitle').value = p.role;
-      document.getElementById('techStack').value = p.stack;
-      document.getElementById('outputFormat').value = p.format;
-      document.getElementById('negativeConstraints').value = p.constraints;
-      generatePrompt();
-    }
-
-    function appendChip(fieldId, text) {
-      const el = document.getElementById(fieldId);
-      if (el.value.length > 0 && !el.value.endsWith(' ')) {
-        el.value += ', ';
-      }
-      if (!el.value.includes(text)) {
-        el.value += text;
-      }
-      generatePrompt();
-    }
-
-    function switchPlatform(platform) {
-      currentPlatform = platform;
-      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-      document.getElementById(`tab-${platform}`).classList.add('active');
-
-      const guide = document.getElementById('platformGuide');
-      if (platform === 'gemini') {
-        guide.innerHTML = '📌 <strong>Gemini Instructions:</strong> Go to <em>Settings & Help (⚙️) → Personal Intelligence → Instructions for Gemini</em>, then paste this block.';
-      } else if (platform === 'claude') {
-        guide.innerHTML = '📌 <strong>Claude Instructions:</strong> Open your Claude Project → Click <em>Set Project Instructions</em> in the sidebar, then paste this block.';
-      } else if (platform === 'chatgpt') {
-        guide.innerHTML = '📌 <strong>ChatGPT Instructions:</strong> Go to <em>Profile → Settings → Personalization → Custom Instructions</em>. Split into top and bottom boxes as labeled.';
-      }
-
-      generatePrompt();
-    }
-
-    function generatePrompt() {
-      const role = document.getElementById('roleTitle').value || "Technical Engineer";
-      const seniority = document.getElementById('seniority').value;
-      const stack = document.getElementById('techStack').value || "General Stack & Standards";
-      const mode = document.getElementById('reasoningMode').value;
-      const format = document.getElementById('outputFormat').value || "Scannable Markdown";
-      const constraints = document.getElementById('negativeConstraints').value || "No generic fluff.";
-
-      let output = "";
-
-      if (currentPlatform === 'gemini') {
-        output = `**Role & Seniority:** ${role} (${seniority})\n` +
-                 `**Core Stack & Standards:** ${stack}\n` +
-                 `**Reasoning Directives:** ${mode}\n` +
-                 `**Output Structure:** ${format}\n\n` +
-                 `**Execution Rules & Constraints:**\n` +
-                 `- Lead directly with substance; omit introductory greetings and meta-announcements.\n` +
-                 `- Prioritize scannability using bold section titles, concise bullets, and comparison tables.\n` +
-                 `- ${constraints}`;
-      } else if (currentPlatform === 'claude') {
-        output = `<context>\n` +
-                 `  <role>${role}</role>\n` +
-                 `  <seniority_level>${seniority}</seniority_level>\n` +
-                 `  <primary_stack>${stack}</primary_stack>\n` +
-                 `</context>\n\n` +
-                 `<directives>\n` +
-                 `  <reasoning_mode>${mode}</reasoning_mode>\n` +
-                 `  <format_preference>${format}</format_preference>\n` +
-                 `</directives>\n\n` +
-                 `<negative_constraints>\n` +
-                 `  <rule>${constraints}</rule>\n` +
-                 `  <rule>Do not wrap responses in apologetic conversational phrases.</rule>\n` +
-                 `</negative_constraints>`;
-      } else if (currentPlatform === 'chatgpt') {
-        output = `--- PASTE THIS IN TOP BOX (What would you like ChatGPT to know about you?) ---\n` +
-                 `- Role: ${role}\n` +
-                 `- Experience/Scope: ${seniority}\n` +
-                 `- Technology & Standards Stack: ${stack}\n\n` +
-                 `--- PASTE THIS IN BOTTOM BOX (How would you like ChatGPT to respond?) ---\n` +
-                 `- Interaction Preference: ${mode}\n` +
-                 `- Desired Format: ${format}\n` +
-                 `- Strict Constraints: ${constraints}\n` +
-                 `- Never start responses with "Certainly!" or "As an AI language model..."`;
-      }
-
-      document.getElementById('outputBox').value = output;
-    }
-
-    function copyToClipboard() {
-      const box = document.getElementById('outputBox');
-      box.select();
-      navigator.clipboard.writeText(box.value);
-      alert("Copied to clipboard!");
-    }
-
-    window.onload = () => {
-      changeLanguage('en');
-      generatePrompt();
-    };
-  </script>
-</body>
+    <!-- Pure Client Application Script (Relative path) -->
+    <script type="module" src="assets/js/app.js"></script>
+  </body>
 </html>

@@ -1,0 +1,8 @@
+{
+  "name": "Engineering AI Profile & Skill Builder",
+  "description": "Bilingual (EN/FA) open-source tool for industrial and EPC engineering teams to build verified, reusable AI profiles and domain skill instructions.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

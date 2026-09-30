@@ -1,0 +1,16 @@
+[
+  {
+    "code": "en",
+    "name": "English",
+    "localName": "English",
+    "dir": "ltr",
+    "default": true
+  },
+  {
+    "code": "fa",
+    "name": "Persian",
+    "localName": "فارسی",
+    "dir": "rtl",
+    "default": false
+  }
+]
